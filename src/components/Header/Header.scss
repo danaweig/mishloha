@@ -1,0 +1,14 @@
+.Header {
+    
+    background-color: #52493e;
+    padding: 5px 0;
+    .flexRow {
+        justify-content: space-between;
+        align-items: center;
+        img[alt="logo"] {
+            margin-bottom: 8px;
+        }
+    }
+
+
+}

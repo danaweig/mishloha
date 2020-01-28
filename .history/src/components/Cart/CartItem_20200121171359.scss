@@ -1,0 +1,41 @@
+.cartItem {
+  padding: 20px;
+  display: flex;
+  
+  .cartItemQuantity {
+    button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #d8d9c8;
+      background-color: #fff;
+      margin-right: 5px;  
+    }
+  }
+
+  .cartItemIMG {
+    height: 50px;
+    margin-left: 10px;
+  }
+}
+
+.cartItemHeader {
+  display: flex;
+  justify-content: space-between;
+
+  h4 {
+    margin-top: 0;
+  }
+  span {
+    font-weight: 700;
+  }
+}
+
+.cartItemDescription {
+  font-size: 14px;
+}
+
+.cartItemQuantity {
+  display: flex;
+  justify-content: flex-end;
+}

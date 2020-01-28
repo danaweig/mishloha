@@ -1,0 +1,23 @@
+.cartContainer {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 3px;
+  margin: 30px;
+}
+
+.emptyCart {
+    height: 150px;
+
+    img
+}
+
+.cartContainerHeader {
+  padding-right: 20px;
+  border-bottom: 1px solid #d8d9c8;
+  display: flex;
+  line-height: 55px;
+
+  h4 {
+    margin: 0;
+  }
+}

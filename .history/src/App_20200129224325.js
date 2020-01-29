@@ -2,13 +2,16 @@ import React from 'react';
 import './App.css';
 import Layout from './components/Layout/Layout';
 import Menu from './containers/Menu/Menu';
+import menuContextProvider from './contexts/store.js';
 
 function App() {
   return (
     <div className="App">
-    
+
       <Layout>
-        <Menu />
+        <menuContextProvider>
+          <Menu />
+        </menuContextProvider>
       </Layout>
     </div>
   );

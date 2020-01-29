@@ -17,12 +17,12 @@ const CategoryMenu = () => {
   //   "שתיה קלה", 
   //   "בירות"];
 
-  const {menuTitles} = useContext(menuContext);
+  const {titles} = useContext(menuContext);
 
   return (
     <nav className="CategoryMenu">
       <ul>
-        {menuTitles.map(title => {return(<li key={title.id}><a href="#">{title.title}</a></li>)})}
+        {titles.menuTitles.map(title => {return(<li key={titles.menuTitles.id}><a href="#">{titles.menuTitles.title}</a></li>)})}
       </ul>
     </nav>
   )

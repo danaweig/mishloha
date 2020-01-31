@@ -1,0 +1,44 @@
+.Hero {
+    background-size : cover;
+    background-position: center;
+    padding : 60px 0 0;
+    text-align: center;
+
+    div.restLogo {
+        background-color: rgba(255,255,255,.75);
+        min-width: 362px;
+        max-width: 500px;
+        margin: 0 auto 60px;
+        border-radius: 4px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,.2), 0 0 10px 0 rgba(0,0,0,.2);
+        padding: 30px 15px 18px 15px;
+    }
+    h1 {
+        margin: 0;
+        font-weight: 900;
+    }
+    .restCaption {
+     
+        background: rgba(82, 73, 62, 0.85);
+        
+        * {
+            color: #fff;    
+        }
+        .container > .flexRow {
+            justify-content: space-between;
+            align-items: center;
+        }
+        .rightCap > .flexRow , .leftCap > .flexRow {
+            align-items: center;
+        }
+        .rightCap > .flexRow a {
+            text-decoration: none;
+        }
+        .leftCap button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+    }
+}

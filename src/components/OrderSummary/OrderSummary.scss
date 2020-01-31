@@ -1,0 +1,27 @@
+.OrderSummary {
+        margin-top: 10px;
+        table {
+            width: 100%;
+        }
+        tr {
+            font-weight: 900;
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        tr td:nth-child(2) {
+            text-align: left;
+            
+        }
+        td {
+            padding: 20px;
+            width: 50%;
+            line-height: 1;
+            color: #000;
+        }
+        tr.delivery_pay td {
+            border-bottom: 1px solid #e8e8e8;
+        }
+    
+
+}

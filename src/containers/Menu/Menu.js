@@ -11,14 +11,11 @@ class Menu extends Component {
     render() {
         return (
             <div className="Menu">
-
-
                 <MenuContextProvider>
                     <DishPopup />
                     <Hero />
                     <div className="MenuSection">
                         <div className="container">
-
                             <div className="flexRow">
                                 <div className="rightPane">
                                     <CategoryMenu />
@@ -36,7 +33,6 @@ class Menu extends Component {
                     </div>
                 </MenuContextProvider>
             </div>
-
         );
     }
 }

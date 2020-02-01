@@ -122,10 +122,9 @@ const MenuContextProvider = (props) => {
     }
   ]);
 
-  
 
   return (
-    <menuContext.Provider value={{menuTitles, menuItems}}>
+    <menuContext.Provider value={{ menuTitles, menuItems }}>
       {props.children}
     </menuContext.Provider>
   )

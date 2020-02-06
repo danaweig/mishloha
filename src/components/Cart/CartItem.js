@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './CartItem.scss';
+
+import { menuContext } from '../../contexts/store.js';
 
 import DishPopup from '../DishPopup/DishPopup.js';
 import CartItemQuantity from './CartItemQuantity.js';
 
 const CartItem = (props) => {
-
+  const { cartItems, increaseCartQuantity, decreseCartQuantity } = useContext(menuContext);
   return (
     <div className="cartItem" key={props.id}>
       <img className="cartItemIMG" src={props.image} />
@@ -15,12 +17,12 @@ const CartItem = (props) => {
           <span>{props.price}₪</span>
         </div>
         <p className="cartItemDescription">{props.desc}</p>
-        {/* <CartItemQuantity /> */}
+        
         <div className="cartItemQuantity">
           <button onClick={<DishPopup />}>🖊️</button>
-          <button onClick={props.increase}>+</button>
-          <span>{props.itemQuantity}</span>
-          <button onClick={props.decrease}>-</button>
+          <CartItemQuantity increase={() => increaseCartQuantity(props.increase)}
+            decrease={() => decreseCartQuantity(props.decrease)}
+              itemQuantity={props.itemQuantity} />
         </div>
       </div>
     </div>

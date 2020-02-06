@@ -27,15 +27,15 @@ const Cart = () => {
         <>
           <div>
             {cartItems.map(item => {
-              
+
               return (
                 <CartItem image={item.image}
                   title={item.title}
                   price={item.price}
                   desc={item.desc}
                   key={item.id}
-                  increase={() => increaseCartQuantity(item.id)}
-                  decrease={() => decreseCartQuantity(item.id)}
+                  increase={item.id}
+                  decrease={item.id}
                   itemQuantity={item.cartQuantity}
                 />
               )

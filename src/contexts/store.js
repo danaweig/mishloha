@@ -127,6 +127,7 @@ const MenuContextProvider = (props) => {
     }
   ], );
 
+
   const [cartItems, setCartItems] = useState(menuItems.filter(item => item.cartQuantity > 0));
 
 
@@ -144,10 +145,34 @@ const MenuContextProvider = (props) => {
     console.log(indexCart)
     setCartItems(newCart);
   }
+  const [popup, updatePopup] = useState({
+    id: -1,
+    is_opened: false,
+  });
 
-
+  const openPopup = (id) => {
+    updatePopup({
+      id,
+      is_opened: true
+    })
+  }
+  const closePopup = () => {
+    updatePopup({
+      id: -1,
+      is_opened: false
+    })
+  }
   return (
-    <menuContext.Provider value={{ menuTitles, menuItems, cartItems, increaseCartQuantity, decreseCartQuantity }}>
+    <menuContext.Provider value={
+      {
+        menuTitles,
+        menuItems,
+        cartItems,
+        increaseCartQuantity,
+        decreseCartQuantity,
+        popup
+      }
+    }>
       {props.children}
     </menuContext.Provider>
   )

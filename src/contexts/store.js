@@ -77,6 +77,7 @@ const MenuContextProvider = (props) => {
       liked: false,
       cartQuantity: 1,
       itemCategory: 1,
+      likeCount: 32,
     },
     {
       id: 1592,
@@ -87,7 +88,8 @@ const MenuContextProvider = (props) => {
       tag: [],
       liked: false,
       cartQuantity: 0,
-      itemCategory: 1,
+      itemCategory: 2,
+      likeCount: 12,
     },
     {
       id: 1593,
@@ -98,7 +100,8 @@ const MenuContextProvider = (props) => {
       tag: ["veg"],
       liked: false,
       cartQuantity: 0,
-      itemCategory: 1,
+      itemCategory: 3,
+      likeCount: 0,
 
     },
     {
@@ -110,7 +113,8 @@ const MenuContextProvider = (props) => {
       tag: ["popular"],
       liked: false,
       cartQuantity: 1,
-      itemCategory: 1,
+      itemCategory: 4,
+      likeCount: 1,
 
     },
     {
@@ -122,7 +126,8 @@ const MenuContextProvider = (props) => {
       tag: [],
       liked: false,
       cartQuantity: 2,
-      itemCategory: 1,
+      itemCategory: 5,
+      likeCount: 2,
 
     }
   ], );

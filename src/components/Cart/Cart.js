@@ -34,8 +34,7 @@ const Cart = () => {
                   price={item.price}
                   desc={item.desc}
                   key={item.id}
-                  increase={item.id}
-                  decrease={item.id}
+                  id={item.id}
                   itemQuantity={item.cartQuantity}
                 />
               )

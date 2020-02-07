@@ -125,10 +125,10 @@ const MenuContextProvider = (props) => {
       itemCategory: 1,
 
     }
-  ],);
+  ], );
 
   const [cartItems, setCartItems] = useState(menuItems.filter(item => item.cartQuantity > 0));
-  
+
 
   const increaseCartQuantity = (id) => {
     const indexCart = cartItems.findIndex(item => item.id === id);

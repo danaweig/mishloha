@@ -6,6 +6,7 @@ import MenuContextProvider from '../../contexts/store.js';
 import Hero from '../../components/Hero/Hero.js'
 import OrderType from 'components/OrderType/OrderType.js';
 import OrderSummary from 'components/OrderSummary/OrderSummary.js';
+import Dishes from 'components/Dishes/Dishes.js';
 import './Menu.scss';
 class Menu extends Component {
     render() {
@@ -21,7 +22,7 @@ class Menu extends Component {
                                     <CategoryMenu />
                                 </div>
                                 <div className="MenuDishes">
-                                    <p>Menu</p>
+                                    <Dishes />
                                 </div>
                                 <div className="leftPane">
                                     <OrderType />

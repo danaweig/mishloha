@@ -4,7 +4,7 @@ import Img from "./Img.js";
 import store from "../assets/store.js"
 
 const Desc = (props) => {
-
+const 
   return (
     <div className="GBox" DishId={store.id}>
       <img className="DishImg" src={Img} />

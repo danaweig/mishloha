@@ -22,7 +22,9 @@ margin: 2%;}
   width: 20%;
 }
 
-.button{align-self: flex-end;}
+.button{display: flex;
+  place-content: flex-end;
+}
 
 
 .text{
@@ -62,7 +64,14 @@ position: relative;
   }
   .Desc{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    padding: 2%; 
+    width: 100%;
+  }
+
+  .DescCard{
+    display: flex;
     width: 100%;
   }
   

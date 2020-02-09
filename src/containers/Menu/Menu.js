@@ -8,6 +8,7 @@ import OrderType from 'components/OrderType/OrderType.js';
 import OrderSummary from 'components/OrderSummary/OrderSummary.js';
 import Dishes from 'components/Dishes/Dishes.js';
 import './Menu.scss';
+import Dish from 'components/Dish/Dish.js';
 class Menu extends Component {
     render() {
         return (
@@ -23,6 +24,7 @@ class Menu extends Component {
                                 </div>
                                 <div className="MenuDishes">
                                     <Dishes />
+                                    <Dish/>
                                 </div>
                                 <div className="leftPane">
                                     <OrderType />

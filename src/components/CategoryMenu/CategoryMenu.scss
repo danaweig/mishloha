@@ -1,3 +1,8 @@
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
 .CategoryMenu{
 
   display: inline-block;
@@ -6,6 +11,8 @@
   box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2);
   margin-right: 30px;
   border-radius: 3px;
+  position: sticky;
+  top: 0;
 
   ul{
     padding: 23px;
@@ -24,7 +31,7 @@
     border: none;
   }
 
-  li:hover{
+  li:active{
     background-color: #f16f24;
     border-radius: 3px; 
     border-top: none;
@@ -33,5 +40,6 @@
   a{
     text-decoration: none;
     color: #52493e;
+    height: 100%;
   }
 }

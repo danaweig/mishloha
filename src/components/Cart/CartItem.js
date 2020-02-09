@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import './CartItem.scss';
 
 import { menuContext } from '../../contexts/store.js';
@@ -17,16 +17,16 @@ const CartItem = (props) => {
           <span>{props.price}₪</span>
         </div>
         <p className="cartItemDescription">{props.desc}</p>
-        
+
         <div className="cartItemQuantity">
           <button onClick={<DishPopup />}>🖊️</button>
           <CartItemQuantity increase={() => increaseCartQuantity(props.id)}
             decrease={() => decreseCartQuantity(props.id)}
-              itemQuantity={props.itemQuantity} />
+            itemQuantity={props.itemQuantity} />
+        </div>
         </div>
       </div>
-    </div>
-  )
-}
-
+      )
+    }
+    
 export default CartItem;

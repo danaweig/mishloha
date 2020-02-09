@@ -140,7 +140,8 @@ const MenuContextProvider = (props) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
     newCart[indexCart].cartQuantity += 1;
-    setCartItems(newCart);
+    indexCart === -1 ? newCart.push(menuItems.findIndex(item => item.id === id)) : newCart[indexCart].cartQuantity ++;
+    setCartItems(newCart);  
   }
 
   const decreseCartQuantity = (id) => {

@@ -13,7 +13,6 @@ class Menu extends Component {
         return (
             <div className="Menu">
                 <MenuContextProvider>
-                    <DishPopup />
                     <Hero />
                     <div className="MenuSection">
                         <div className="container">

@@ -3,22 +3,22 @@ import './DishPopupDetails.scss';
 import dish from '../../../assets/images/dish.jpg';
 
 
-const DishPopupDetails = () => {
+const DishPopupDetails = (props) => {
 
     return (
 
-        <div className="DishPopupHeader">
+        <div className="DishPopupDetails">
             <div className="overlay"></div>
             <div className="flexRow">
                 <div className="DishImage">
                     <img src={dish} alt="dish" />
                 </div>
                 <div className="DishDetails">
-                    <h2>סלט שורשים גדול</h2>
-                    <p>צנון, גזר פפאיה ירוקה, נבטים, ג'ינג'ר, בצל ירוק, וואסבי קראנץ' ושקדים מסוכרים ברוטב ג'ינג'ר גומה </p>
-                    <p className="price"><span>44</span><span>₪</span></p>
-                    <p>DishTag </p>
-                    <p>LikeButton</p>
+                    <h2>{props.title}</h2>
+                    <p>{props.description} </p>
+                    <p className="price"><span>{props.price}</span><span>₪</span></p>
+                    <p>{props.tag}</p>
+                    <p>LikeButton={props.liked} {props.likeCount} אהבו את זה</p>
                     <p>ChooseQuantity</p>
                 </div>
             </div>

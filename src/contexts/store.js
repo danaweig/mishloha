@@ -72,8 +72,8 @@ const MenuContextProvider = (props) => {
       title: "דאבל פרש רול",
       desc: "2 יחידות. אטריות שעועית, טופו, בטטה קריספי, כוסברה, עירית, אבוקדו, גזר ונבטים, מוגש עם רוטב ויאטנמי חריף.",
       price: 32,
-      image: "dish1.jpg",
-      tag: ["popular", "veg"],
+      image: "images/dish1.jpg",
+      tag: [1, 3],
       liked: false,
       cartQuantity: 1,
       itemCategory: 1,
@@ -96,8 +96,8 @@ const MenuContextProvider = (props) => {
       title: "פאוור פרש",
       desc: "גזר ,כרוב לבן ואדום, נבטים, ג'ינג'ר, בצל ירוק, עלי כוסברה, נענע,  שומשום, ברוטב תאילנדי מסורתי.  ",
       price: 34,
-      image: "dish2.jpg",
-      tag: ["veg"],
+      image: "images/dish2.jpg",
+      tag: [3],
       liked: false,
       cartQuantity: 0,
       itemCategory: 3,
@@ -109,8 +109,8 @@ const MenuContextProvider = (props) => {
       title: "קריספי צ'יקן",
       desc: "עוף בציפוי טמפורה ופצפוצי אורז, עם רוטב בברבקיו קוריאני.",
       price: 36,
-      image: "dish1.jpg",
-      tag: ["popular"],
+      image: "images/dish1.jpg",
+      tag: [1],
       liked: false,
       cartQuantity: 1,
       itemCategory: 4,
@@ -122,15 +122,15 @@ const MenuContextProvider = (props) => {
       title: "חמוצים יפניים",
       desc: "כרוב לבן, גזר, מלפפון ופלפלים בתחמיץ מתקתק. עם שומשום מעל. ",
       price: 24,
-      image: "dish2.jpg",
-      tag: [],
+      image: "images/dish2.jpg",
+      tag: [2],
       liked: false,
       cartQuantity: 2,
       itemCategory: 5,
       likeCount: 2,
 
     }
-  ], );
+  ]);
 
 
   const [cartItems, setCartItems] = useState(menuItems.filter(item => item.cartQuantity > 0));
@@ -139,8 +139,15 @@ const MenuContextProvider = (props) => {
   const increaseCartQuantity = (id) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
-    newCart[indexCart].cartQuantity += 1;
-    setCartItems(newCart);
+    if (indexCart === -1) {
+      const indexMenu = menuItems.findIndex(item => item.id === id);
+      newCart.push(menuItems[indexMenu]);
+      newCart[newCart.length - 1].cartQuantity += 1;
+      setCartItems(newCart);
+    } else {
+      newCart[indexCart].cartQuantity += 1;
+      setCartItems(newCart);
+    };
   }
 
   const decreseCartQuantity = (id) => {

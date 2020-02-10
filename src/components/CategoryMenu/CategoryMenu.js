@@ -9,7 +9,7 @@ const CategoryMenu = () => {
   return (
     <nav className="CategoryMenu">
       <ul>
-        {menuTitles.map(title => {return(<li key={title.id}><a href="#">{title.title}</a></li>)})}
+        {menuTitles.map(title => {return(<li key={title.id}><a href={'#' + title.id}>{title.title}</a></li>)})}
       </ul>
     </nav>
   )

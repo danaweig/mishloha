@@ -5,6 +5,7 @@ import { menuContext } from '../../contexts/store.js';
 
 import DishPopup from '../DishPopup/DishPopup.js';
 import CartItemQuantity from './CartItemQuantity.js';
+import DishTag from 'components/DishTag/DishTag';
 
 const CartItem = (props) => {
   const { cartItems, increaseCartQuantity, decreseCartQuantity } = useContext(menuContext);
@@ -22,7 +23,7 @@ const CartItem = (props) => {
           <button onClick={<DishPopup />}>🖊️</button>
           <CartItemQuantity increase={() => increaseCartQuantity(props.id)}
             decrease={() => decreseCartQuantity(props.id)}
-              itemQuantity={props.itemQuantity} />
+            itemQuantity={props.itemQuantity} />
         </div>
       </div>
     </div>

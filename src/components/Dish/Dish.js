@@ -3,6 +3,7 @@ import "./Dish.scss";
 import { menuContext } from "contexts/store";
 import '../Cart/CartItem.scss';
 import DishPopup from "components/DishPopup/DishPopup";
+import DishTag from "components/DishTag/DishTag";
 const Dish = () => {
   const { menuItems , increaseCartQuantity} = useContext(menuContext);
  
@@ -20,7 +21,7 @@ const Dish = () => {
           <span>{menuItems.price}₪</span>
         </div>
         <p className="cartItemDescription">{menuItems.desc}</p>
-        
+        <DishTag tag={menuItems.tag} />
         <div className="button">
           <button onClick={()=>increaseCartQuantity(menuItems.id)}>הוסף להזמנה +</button>
         </div>

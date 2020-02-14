@@ -75,7 +75,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish1.jpg",
       tag: [1, 3],
       liked: false,
-      cartQuantity: 1,
+      cartQuantity: 0,
       itemCategory: 1,
       likeCount: 32,
     },
@@ -112,7 +112,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish1.jpg",
       tag: [1],
       liked: false,
-      cartQuantity: 1,
+      cartQuantity: 0,
       itemCategory: 4,
       likeCount: 5,
 
@@ -125,7 +125,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish2.jpg",
       tag: [2],
       liked: false,
-      cartQuantity: 2,
+      cartQuantity: 0,
       itemCategory: 5,
       likeCount: 2,
 
@@ -142,10 +142,10 @@ const MenuContextProvider = (props) => {
     if (indexCart === -1) {
       const indexMenu = menuItems.findIndex(item => item.id === id);
       newCart.push(menuItems[indexMenu]);
-      newCart[newCart.length - 1].cartQuantity += 1;
+      newCart[newCart.length - 1].cartQuantity++;
       setCartItems(newCart);
     } else {
-      newCart[indexCart].cartQuantity += 1;
+      newCart[indexCart].cartQuantity++;
       setCartItems(newCart);
     };
   }
@@ -153,7 +153,7 @@ const MenuContextProvider = (props) => {
   const decreseCartQuantity = (id) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
-    newCart[indexCart].cartQuantity === 1 ? newCart.splice(indexCart, 1) : newCart[indexCart].cartQuantity -= 1;
+    newCart[indexCart].cartQuantity === 1 ? newCart.splice(indexCart, 1) : newCart[indexCart].cartQuantity--;
     console.log(indexCart)
     setCartItems(newCart);
   }

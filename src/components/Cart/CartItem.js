@@ -24,10 +24,7 @@ const CartItem = (props) => {
           <CartItemQuantity increase={() => increaseCartQuantity(props.id)}
             decrease={() => decreseCartQuantity(props.id)}
             itemQuantity={props.itemQuantity} />
-<<<<<<< HEAD
         </div>
-=======
->>>>>>> dish tag component added
         </div>
       </div>
       )

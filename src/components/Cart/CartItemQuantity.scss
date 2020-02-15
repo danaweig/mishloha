@@ -3,7 +3,8 @@
 .cartItemQuantity {
     display: flex;
     justify-content: flex-end;
-    button {
+    
+    .cartItemQuantityBtn {
       width: 30px;
       height: 30px;
       border-radius: 50%;

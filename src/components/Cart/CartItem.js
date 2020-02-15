@@ -7,7 +7,7 @@ import DishPopup from '../DishPopup/DishPopup.js';
 import CartItemQuantity from './CartItemQuantity.js';
 
 const CartItem = (props) => {
-  const { cartItems, increaseCartQuantity, decreseCartQuantity, openPopup } = useContext(menuContext);
+  const { cartItems, increaseCartQuantity, decreseCartQuantity, openPopup, removeFromCart } = useContext(menuContext);
 
   const addComments = () => {
     return (
@@ -30,8 +30,9 @@ const CartItem = (props) => {
           <span>₪{props.price}</span>
         </div>
         <p className="cartItemDescription">{props.desc}</p>
-        <div className="cartItemQuantity">
-          <button onClick={() => openPopup(props.id)}>🖊️</button>
+        <div className="cartItemQuantityContainer">
+          <button className="remove-from-cart" onClick={() => (removeFromCart(props.id, props.itemQuantity))}>הסר מהעגלה</button>
+          <button className="cartItemQuantityBtn" onClick={() => openPopup(props.id)}>🖊️</button>
           <CartItemQuantity increase={() => increaseCartQuantity(props.id)}
             decrease={() => decreseCartQuantity(props.id)}
             itemQuantity={props.itemQuantity} />

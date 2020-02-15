@@ -31,10 +31,13 @@ html {
     border: none;
   }
 
-  .is-current{
+  .is-current {
     background-color: #f16f24;
     border-radius: 3px; 
     border-top: none;
+    a{
+      color: #fff;
+    }
   }
 
   a{

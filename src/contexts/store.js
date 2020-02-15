@@ -133,9 +133,9 @@ const MenuContextProvider = (props) => {
   ]);
 
 
-  const [cartItems, setCartItems] = useState(menuItems.filter(item => item.cartQuantity > 0));
-
-
+  const [cartItems, setCartItems] = useState(
+    menuItems.filter(item => item.cartQuantity > 0)
+  );
 
   const updateCartQuantity = (id, quantity) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
@@ -147,9 +147,18 @@ const MenuContextProvider = (props) => {
       newCart[newCart.length - 1].cartQuantity += quantity;
       setCartItems(newCart);
     } else {
-      newCart[indexCart].cartQuantity + quantity < 1 ? newCart.splice(indexCart, 1) : newCart[indexCart].cartQuantity += quantity;
+      if (newCart[indexCart].cartQuantity + quantity < 1) {
+        newCart[indexCart].cartQuantity = 0;
+        newCart.splice(indexCart, 1);
+
+      } else {
+        newCart[indexCart].cartQuantity += quantity;
+      }
       setCartItems(newCart);
     }
+    console.log(cartItems);
+    console.log(menuItems);
+
   }
   const increaseCartQuantity = (id) => {
     updateCartQuantity(id, 1);

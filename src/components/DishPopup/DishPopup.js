@@ -8,7 +8,7 @@ import CartItemQuantity from '../Cart/CartItemQuantity.js';
 import DishTag from '../DishTag/DishTag.js';
 
 const DishPopup = (props) => {
-    const { menuItems, closePopup, openPopup, updateCartQuantity } = useContext(menuContext);
+    const { menuItems, closePopup, openPopup, updateCartQuantity,/* updateFields*/ } = useContext(menuContext);
     let dishItem = {};
     const [dish, setDish] = useState({ ...dishItem });
     let commentsInput = useRef(null);
@@ -16,7 +16,13 @@ const DishPopup = (props) => {
 
     useEffect(() => {
         dishItem = menuItems.find((item) => { return item.id === props.id });
-        setDish({ ...dishItem });
+        if (dishItem && dishItem.cartQuantity === 0) {
+            setDish({ ...dishItem, cartQuantity: 1 });
+        } else {
+            setDish({ ...dishItem });
+        }
+
+
     }, [props.id]);
 
     const increaseDish = () => {
@@ -37,18 +43,20 @@ const DishPopup = (props) => {
         dishItem = menuItems.find((item) => { return item.id === props.id });
 
         const change = dish.cartQuantity - dishItem.cartQuantity;
-        console.log(change);
-        // setDish(
-        //     {
-        //         ...dish,
-        //         cartQuantity: dish.cartQuantity,
-        //         comments: commentsInput.current.value,
-        //         newNameInput: newNameInput.current.value,
-        //     });
+        setDish(
+            {
+                ...dish,
+                cartQuantity: dish.cartQuantity,
+                comments: commentsInput.current.value,
+                newNameInput: newNameInput.current.value,
+            });
         if (change != 0)
             updateCartQuantity(dish.id, change);
+        // updateFields(dish.comments,dish.newNameInput);
         closePopup();
     }
+    const style = dish ? { backgroundImage: `url(${dish.image})` } : '';
+
     return (
         <div className={props.opened ? "opened DishPopup" : "DishPopup"}>
             <div className="DishPopupContent">
@@ -64,7 +72,7 @@ const DishPopup = (props) => {
                     liked={dish ? dish.liked : false}
                     likeCount={dish ? dish.likeCount : 'false'}
                 /> */}
-                <div className="DishPopupDetails">
+                <div className="DishPopupDetails" style={style}>
                     <div className="overlay"></div>
                     <div className="flexRow">
                         <div className="DishImage">
@@ -74,13 +82,11 @@ const DishPopup = (props) => {
                             <h2>{dish ? dish.title : ''}</h2>
                             <p>{dish ? dish.description : ''}</p>
                             <p className="price"><span>{dish ? dish.price : ''}</span><span>₪</span></p>
-                            <p>{dish ? 1 : []}</p>
                             <DishTag tag={dish && dish.tag ? dish.tag : []} />
                             <p>LikeButton={dish ? dish.liked : false} {dish ? dish.likeCount : '0'} אהבו את זה</p>
                             <CartItemQuantity increase={() => increaseDish()}
                                 decrease={() => decreaseDish()}
                                 itemQuantity={dish ? dish.cartQuantity : 0} />
-
                         </div>
                     </div>
                 </div>

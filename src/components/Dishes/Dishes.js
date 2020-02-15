@@ -21,9 +21,6 @@ const Dishes = (props) => {
             <DishPopup opened={popup.is_opened} id={popup.id} />
 
             <div className="Dishes" >
-
-                {console.log('menuItems')}
-                {console.log(menuItems)}
                 {
                     menuTitles.map(catItem => {
                         return (

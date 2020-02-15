@@ -1,0 +1,21 @@
+
+
+.cartItemQuantity {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #d8d9c8;
+      background-color: #fff;
+      margin-right: 5px;  
+    }
+    span {
+      margin-right: 5px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  

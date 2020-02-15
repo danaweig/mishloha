@@ -40,10 +40,13 @@
             background: transparent;
             border: 2px solid #fff;
             border-radius: 50%;
-            padding: 12px;
+            padding: 9px;
             display: flex;
             opacity: 0.5;
             cursor: pointer;
+            &:hover {
+                opacity: 1;
+            }
         }
 
         .DishPopupMain {
@@ -112,7 +115,95 @@
     .cartItemQuantity span {
         color: #fff;
     }
-    .dish-tags-container .dish-tag-desc {
+    
+    .cartItemQuantity button {
+        /* width: 30px; */
+        /* height: 30px; */
+        /* border-radius: 50%; */
+        border: 1px solid #ffffff;
+        background-color: transparent;
+        /* margin-right: 5px; */
         color: #fff;
+    }
+     
+    
+   .DishPopupDetails {
+        
+        display: flex;
+        justify-content: space-between;
+        border-top: 5px solid #fac50c;
+        background-image: url(/static/media/dish.4cbee44d.jpg);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding: 30px 50px;
+        background-position: center;
+        background-size: cover;
+        .dish-tags-container .dish-tag-desc {
+            color: #fff;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(82, 73, 62, 0.9);
+            z-index: 8;
+        }
+        .flexRow {
+            position: relative;
+            z-index: 9;
+            width: 100%;
+        }
+        .DishImage {
+            width: 45%;
+            padding: 0 0 0 30px;
+            display: flex;
+            align-items: center;
+        
+            img {
+                width: 100%;
+                // object-fit: cover;
+                // height: 100%;
+            }
+        }
+        .DishDetails {
+            width: 50%;
+        }
+        h2 {
+            color: #fff;
+            margin: 0 0 8px;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        p {
+            color: #fff;
+            font-size: 13px;
+            line-height: 1.1;
+            margin: 0;
+            margin-bottom: 20px
+        }
+        p.price {
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+        }
+        .dishQuantity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        
+             > p {
+                font-size: 17px;
+                font-weight: bold;
+                margin: 0;
+            }
+        }
+        .dish-tags-container {
+            margin-bottom: 15px;
+        }
     }
 }

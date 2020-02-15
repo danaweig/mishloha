@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import DishPopupDetails from './DishPopupDetails/DishPopupDetails';
+// import DishPopupDetails from './DishPopupDetails/DishPopupDetails';
 import './DishPopup.scss';
 import dish from '../../assets/images/dish.jpg';
 import closeIcon from '../../assets/images/close-modal-icon.png';
@@ -80,13 +80,16 @@ const DishPopup = (props) => {
                         </div>
                         <div className="DishDetails">
                             <h2>{dish ? dish.title : ''}</h2>
-                            <p>{dish ? dish.description : ''}</p>
+                            <p>{dish ? dish.desc : ''}</p>
                             <p className="price"><span>{dish ? dish.price : ''}</span><span>₪</span></p>
                             <DishTag tag={dish && dish.tag ? dish.tag : []} />
-                            <p>LikeButton={dish ? dish.liked : false} {dish ? dish.likeCount : '0'} אהבו את זה</p>
-                            <CartItemQuantity increase={() => increaseDish()}
-                                decrease={() => decreaseDish()}
-                                itemQuantity={dish ? dish.cartQuantity : 0} />
+                            <p>{dish ? dish.liked : false} {dish ? dish.likeCount : '0'} אהבו מנה זו</p>
+                            <div className="dishQuantity">
+                                <p>כמות לבחירה</p>
+                                <CartItemQuantity increase={() => increaseDish()}
+                                    decrease={() => decreaseDish()}
+                                    itemQuantity={dish ? dish.cartQuantity : 0} />
+                            </div>
                         </div>
                     </div>
                 </div>

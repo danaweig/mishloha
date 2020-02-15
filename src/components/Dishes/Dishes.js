@@ -22,6 +22,7 @@ const Dishes = (props) => {
 
             <div className="Dishes" >
 
+                {console.log('menuItems')}
                 {console.log(menuItems)}
                 {
                     menuTitles.map(catItem => {
@@ -45,6 +46,7 @@ const Dishes = (props) => {
                                                     tag={item.tag}
                                                     liked={item.liked}
                                                     cartQuantity={item.cartQuantity}
+                                                    image={item.image}
                                                 />
                                             );
                                         })

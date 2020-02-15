@@ -5,6 +5,7 @@ import dish from '../../assets/images/dish.jpg';
 import closeIcon from '../../assets/images/close-modal-icon.png';
 import { menuContext } from '../../contexts/store.js';
 import CartItemQuantity from '../Cart/CartItemQuantity.js';
+import DishTag from '../DishTag/DishTag.js';
 
 const DishPopup = (props) => {
     const { menuItems, closePopup, openPopup, updateCartQuantity } = useContext(menuContext);
@@ -74,6 +75,7 @@ const DishPopup = (props) => {
                             <p>{dish ? dish.description : ''}</p>
                             <p className="price"><span>{dish ? dish.price : ''}</span><span>₪</span></p>
                             <p>{dish ? 1 : []}</p>
+                            <DishTag tag={dish && dish.tag ? dish.tag : []} />
                             <p>LikeButton={dish ? dish.liked : false} {dish ? dish.likeCount : '0'} אהבו את זה</p>
                             <CartItemQuantity increase={() => increaseDish()}
                                 decrease={() => decreaseDish()}

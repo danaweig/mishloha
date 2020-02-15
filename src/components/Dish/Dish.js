@@ -31,14 +31,7 @@ const Dish = () => {
           <span>{menuItems.price}₪</span>
         </div>
         <p className="cartItemDescription">{menuItems.desc}</p>
-<<<<<<< HEAD
-      <div className="DescCard">
-          <div className="dish-tag-image">img---</div>
-          <span className="dish-tag-desc">{menuItems.title}</span>
-        </div>
-=======
         <DishTag tag={menuItems.tag} />
->>>>>>> master
         <div className="button">
           <button onClick={()=>increaseCartQuantity(menuItems.id)}>הוסף להזמנה +</button>
         </div>

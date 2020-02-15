@@ -66,6 +66,8 @@ const MenuContextProvider = (props) => {
     },
   ];
 
+
+  
   const [menuItems, setMenuItems] = useState([
     {
       id: 1591,
@@ -140,7 +142,6 @@ const MenuContextProvider = (props) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
     newCart[indexCart].cartQuantity += 1;
-    indexCart === -1 ? newCart.push(menuItems.findIndex(item => item.id === id)) : newCart[indexCart].cartQuantity ++;
     setCartItems(newCart);  
   }
 

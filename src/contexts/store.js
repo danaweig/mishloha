@@ -182,7 +182,8 @@ const MenuContextProvider = (props) => {
         cartItems,
         increaseCartQuantity,
         decreseCartQuantity,
-        popup
+        popup,
+        openPopup
       }
     }>
       {props.children}

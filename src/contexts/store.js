@@ -75,7 +75,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish1.jpg",
       tag: [1, 3],
       liked: false,
-      cartQuantity: 1,
+      cartQuantity: 0,
       itemCategory: 1,
       likeCount: 32,
     },
@@ -87,7 +87,7 @@ const MenuContextProvider = (props) => {
       image: "dish2.jpg",
       tag: [],
       liked: false,
-      cartQuantity: 0,
+      cartQuantity: 3,
       itemCategory: 2,
       likeCount: 12,
     },
@@ -99,7 +99,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish2.jpg",
       tag: [3],
       liked: false,
-      cartQuantity: 0,
+      cartQuantity: 4,
       itemCategory: 3,
       likeCount: 0,
 
@@ -112,7 +112,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish1.jpg",
       tag: [1],
       liked: false,
-      cartQuantity: 1,
+      cartQuantity: 0,
       itemCategory: 4,
       likeCount: 5,
 
@@ -125,7 +125,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish2.jpg",
       tag: [2],
       liked: false,
-      cartQuantity: 2,
+      cartQuantity: 0,
       itemCategory: 5,
       likeCount: 2,
 
@@ -136,44 +136,45 @@ const MenuContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(menuItems.filter(item => item.cartQuantity > 0));
 
 
-  const increaseCartQuantity = (id) => {
+
+  const updateCartQuantity = (id, quantity) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
+
     if (indexCart === -1) {
       const indexMenu = menuItems.findIndex(item => item.id === id);
       newCart.push(menuItems[indexMenu]);
-      newCart[newCart.length - 1].cartQuantity += 1;
+      newCart[newCart.length - 1].cartQuantity += quantity;
       setCartItems(newCart);
     } else {
-      newCart[indexCart].cartQuantity += 1;
+      newCart[indexCart].cartQuantity + quantity < 1 ? newCart.splice(indexCart, 1) : newCart[indexCart].cartQuantity += quantity;
       setCartItems(newCart);
-    };
+    }
   }
-
+  const increaseCartQuantity = (id) => {
+    updateCartQuantity(id, 1);
+  }
   const decreseCartQuantity = (id) => {
-    const indexCart = cartItems.findIndex(item => item.id === id);
-    let newCart = [...cartItems];
-    newCart[indexCart].cartQuantity === 1 ? newCart.splice(indexCart, 1) : newCart[indexCart].cartQuantity -= 1;
-    console.log(indexCart)
-    setCartItems(newCart);
+    updateCartQuantity(id, -1);
   }
-  const [popup, updatePopup] = useState({
+  const [popup, setPopup] = useState({
     id: -1,
     is_opened: false,
   });
 
   const openPopup = (id) => {
-    updatePopup({
+    setPopup({
       id,
-      is_opened: true
+      is_opened: true,
     });
   }
   const closePopup = () => {
-    updatePopup({
+    setPopup({
       id: -1,
       is_opened: false
     });
   }
+
   return (
     <menuContext.Provider value={
       {
@@ -182,6 +183,7 @@ const MenuContextProvider = (props) => {
         cartItems,
         increaseCartQuantity,
         decreseCartQuantity,
+        updateCartQuantity,
         popup,
         closePopup,
         openPopup

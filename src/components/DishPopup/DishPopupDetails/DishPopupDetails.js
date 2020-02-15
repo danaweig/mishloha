@@ -11,7 +11,7 @@ const DishPopupDetails = (props) => {
             <div className="overlay"></div>
             <div className="flexRow">
                 <div className="DishImage">
-                    <img src={dish} alt="dish" />
+                    <img src={props.image} alt={props.title} />
                 </div>
                 <div className="DishDetails">
                     <h2>{props.title}</h2>

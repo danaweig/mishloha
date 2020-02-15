@@ -73,7 +73,7 @@ const MenuContextProvider = (props) => {
       desc: "2 יחידות. אטריות שעועית, טופו, בטטה קריספי, כוסברה, עירית, אבוקדו, גזר ונבטים, מוגש עם רוטב ויאטנמי חריף.",
       price: 32,
       image: "images/dish1.jpg",
-      tag: [3,4],
+      tag: [3, 4],
       liked: false,
       cartQuantity: 0,
       itemCategory: 1,
@@ -84,13 +84,8 @@ const MenuContextProvider = (props) => {
       title: "לארב פלא",
       desc: "סלט תאילנדי חריף עם נתחי דג פריכים. חריף.",
       price: 45,
-<<<<<<< HEAD
-      image: "dish2.jpg",
-      tag: [],
-=======
       image: "images/dish2.jpg",
-      tag: [3,4],
->>>>>>> 6c8fb28567d9405715a0578cec7a5532a9cdad51
+      tag: [3, 4],
       liked: false,
       cartQuantity: 0,
       itemCategory: 2,
@@ -115,7 +110,7 @@ const MenuContextProvider = (props) => {
       desc: "עוף בציפוי טמפורה ופצפוצי אורז, עם רוטב בברבקיו קוריאני.",
       price: 36,
       image: "images/dish1.jpg",
-      tag: [1,2,3],
+      tag: [1, 2, 3],
       liked: false,
       cartQuantity: 0,
       itemCategory: 4,
@@ -188,10 +183,7 @@ const MenuContextProvider = (props) => {
         increaseCartQuantity,
         decreseCartQuantity,
         popup,
-<<<<<<< HEAD
         closePopup,
-=======
->>>>>>> 6c8fb28567d9405715a0578cec7a5532a9cdad51
         openPopup
       }
     }>

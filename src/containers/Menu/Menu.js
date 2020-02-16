@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import DishPopup from '../../components/DishPopup/DishPopup.js';
 import CategoryMenu from '../../components/CategoryMenu/CategoryMenu.js'
 import Cart from '../../components/Cart/Cart.js';
@@ -7,13 +7,17 @@ import Hero from '../../components/Hero/Hero.js'
 import OrderType from 'components/OrderType/OrderType.js';
 import OrderSummary from 'components/OrderSummary/OrderSummary.js';
 import Dishes from 'components/Dishes/Dishes.js';
+import RestaurantDescription from 'components/RestaurantDescription/RestaurantDescription.js';
 import './Menu.scss';
 import Dish from 'components/Dish/Dish.js';
-class Menu extends Component {
-    render() {
-        return (
-            <div className="Menu">
-                <MenuContextProvider>
+
+const Menu = () => {
+
+    return (
+        <>
+            <MenuContextProvider>
+                <div className="Menu">
+
                     <Hero />
                     <div className="MenuSection">
                         <div className="container">
@@ -32,10 +36,12 @@ class Menu extends Component {
                             </div>
                         </div>
                     </div>
-                </MenuContextProvider>
-            </div>
-        );
-    }
+
+                </div>
+                <RestaurantDescription />
+            </MenuContextProvider>
+        </>
+    );
 }
 
 export default Menu;

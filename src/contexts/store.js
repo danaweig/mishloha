@@ -137,6 +137,20 @@ const MenuContextProvider = (props) => {
     menuItems.filter(item => item.cartQuantity > 0)
   );
 
+  const [isDelivery, updateDelivery] = useState(true);
+
+  const restaurantDetails = {
+    name: 'גו נודלס תל אביב שדרות יהודית',
+    description: `גו נודלס ת"א מתמחה בנודלס איכותי במתכונת בריאה. בתור מנות פתיחה תוכלו ליהנות ממבחר אגרולים, מרקים וסלטים סיניים רעננים. כמנה עיקרית תוכלו לבחור משלל סוגי הנודלס ברטבים שונים כולל נודלס מאטריות ביצים, נודלס מחיטה מלאה, אטריות אורז, אטריות שעועית או ממגוון מנות בשריות בתוספת אורז כמו למשל מנת הצ'ופסוי המוכרת, עוף בלימון ועוד. לסיום אפשר לקנח במנת בננה לוטי מתקתקה מעולה של גו נודלס או אולי קרם קוקוס מיוחד.nבנוסף מציעה מסעדת גו נודלס ת"א גם מבחר ארוחות עסקיות במחירים נוחים מאד כמו גם שירות משלוחים בעלות של 7 ₪ לתל אביב, רמת גן וגבעתיים.nלחובבי הנודלס ולכל מי שמחפש אוכל טעים, בריא ומהיר עם ניחוחות סיניים, גו נודלס ת"א הוא המקום להזמין ממנו.`,
+    address: `שדרות יהודית, תל אביב`,
+    phone: '03-3002532',
+    deliveryTime: '40-60',
+    deliveryPrice: '12',
+    deliveryMinimum: '60',
+    takeawayTime: '30',
+    logo: 'images/restLogo.png',
+    heroImage: 'images/restBg.jpg'
+  };
   const updateCartQuantity = (id, quantity) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
@@ -156,8 +170,6 @@ const MenuContextProvider = (props) => {
       }
       setCartItems(newCart);
     }
-    console.log(cartItems);
-    console.log(menuItems);
 
   }
   const increaseCartQuantity = (id) => {
@@ -195,7 +207,10 @@ const MenuContextProvider = (props) => {
         updateCartQuantity,
         popup,
         closePopup,
-        openPopup
+        openPopup,
+        isDelivery,
+        updateDelivery,
+        restaurantDetails,
       }
     }>
       {props.children}

@@ -38,6 +38,7 @@ const Cart = () => {
                   itemQuantity={item.cartQuantity}
                   comment={item.comments}
                   owner={item.dishOwner}
+                  item={item}
                 />
               )
             })}

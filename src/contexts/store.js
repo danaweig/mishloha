@@ -102,7 +102,6 @@ const MenuContextProvider = (props) => {
       cartQuantity: 4,
       itemCategory: 3,
       likeCount: 0,
-
     },
     {
       id: 1594,

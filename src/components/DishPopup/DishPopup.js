@@ -59,6 +59,7 @@ const DishPopup = (props) => {
 
     return (
         <div className={props.opened ? "opened DishPopup" : "DishPopup"}>
+            <div className="overlayModal" onClick={closePopup}></div>
             <div className="DishPopupContent">
                 <button className="closeModal" onClick={closePopup}>
                     <img src={closeIcon} alt="search" />

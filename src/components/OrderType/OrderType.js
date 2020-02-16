@@ -5,29 +5,18 @@ import './OrderType.scss';
 const OrderType = (props) => {
     const [type, changeType] = useState(0); //0 for delivery and 1 for take away
     const deliveryContent = (
-        <table>
-            <tbody>
-                <tr>
-                    <td>זמן משלוח</td> <td><span> 40-60 דקות </span></td>
-                </tr>
-                <tr>
-                    <td>דמי משלוח</td> <td><span>12 ₪ </span></td>
-                </tr>
-                <tr>
-                    <td>דמי משלוח</td> <td><span>110 ₪ </span></td>
-                </tr>
+        <>
+            <div className="flexRow"><p className="col-50">זמן משלוח</p><p className="col-50"> 40-60 דקות </p></div>
+            <div className="flexRow"><p className="col-50">דמי משלוח</p><p className="col-50"> 12 ₪ </p></div>
+            <div className="flexRow"><p className="col-50">מינימום משלוח</p><p className="col-50"> 110 ₪  </p></div>
 
-            </tbody>
-        </table>
+        </>
     );
     const takeawayContent = (
-        <table>
-            <tbody>
-                <tr>
-                    <td>זמן לאיסוף</td> <td><span> 30 דקות </span></td>
-                </tr>
-            </tbody>
-        </table>
+        <>
+            <div className="flexRow"><p className="col-50">זמן לאיסוף</p><p className="col-50"> 30 דקות </p></div>
+
+        </>
     );
     const changeOrderType = () => {
         if (type == 0)

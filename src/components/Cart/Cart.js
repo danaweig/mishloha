@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import CartItem from '../Cart/CartItem.js';
 import './Cart.scss';
 import { menuContext } from '../../contexts/store.js';
-import MenuContextProvider from '../../contexts/store.js';
+//import MenuContextProvider from '../../contexts/store.js';
 
 
 
 const Cart = () => {
 
-  const { cartItems, increaseCartQuantity, decreseCartQuantity } = useContext(menuContext);
+  const { cartItems } = useContext(menuContext);
 
   const empty = () => {
     return (
@@ -36,6 +36,9 @@ const Cart = () => {
                   key={item.id}
                   id={item.id}
                   itemQuantity={item.cartQuantity}
+                  comment={item.comments}
+                  owner={item.dishOwner}
+                  item={item}
                 />
               )
             })}

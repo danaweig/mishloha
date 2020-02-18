@@ -102,7 +102,6 @@ const MenuContextProvider = (props) => {
       cartQuantity: 4,
       itemCategory: 3,
       likeCount: 0,
-
     },
     {
       id: 1594,
@@ -178,6 +177,9 @@ const MenuContextProvider = (props) => {
   const decreseCartQuantity = (id) => {
     updateCartQuantity(id, -1);
   }
+  const removeFromCart = (id, quantity) => {
+    updateCartQuantity(id, -quantity);
+  }
   const [popup, setPopup] = useState({
     id: -1,
     is_opened: false,
@@ -211,6 +213,7 @@ const MenuContextProvider = (props) => {
         isDelivery,
         updateDelivery,
         restaurantDetails,
+        removeFromCart
       }
     }>
       {props.children}

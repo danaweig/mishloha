@@ -48,7 +48,7 @@ const DishPopup = (props) => {
                 ...dish,
                 cartQuantity: dish.cartQuantity,
                 comments: commentsInput.current.value,
-                newNameInput: newNameInput.current.value,
+                dishOwner: newNameInput.current.value,
             });
         if (change != 0)
             updateCartQuantity(dish.id, change);

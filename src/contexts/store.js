@@ -101,6 +101,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 1,
       likeCount: 32,
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1592,
@@ -113,6 +115,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 2,
       likeCount: 12,
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1593,
@@ -125,6 +129,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 3,
       likeCount: 0,
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1594,
@@ -137,7 +143,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 4,
       likeCount: 5,
-
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1595,
@@ -150,6 +157,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 5,
       likeCount: 2,
+      comments: "",
+      dishOwner: "",
 
     }
   ]);
@@ -187,35 +196,47 @@ const MenuContextProvider = (props) => {
     logo: 'images/restLogo.png',
     heroImage: 'images/restBg.jpg'
   };
-  const updateCartQuantity = (id, quantity) => {
+
+  const updateCartQuantity = (id, dish, change) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
 
+    //if item dosn't exist in cart - add to cart
     if (indexCart === -1) {
       const indexMenu = menuItems.findIndex(item => item.id === id);
       newCart.push(menuItems[indexMenu]);
-      newCart[newCart.length - 1].cartQuantity += quantity;
+      newCart[newCart.length - 1].cartQuantity = dish.cartQuantity;
+      newCart[newCart.length - 1].comments = dish.comments;
+      newCart[newCart.length - 1].dishOwner = dish.dishOwner;
+      setCartItems(newCart);
     } else {
-      if (newCart[indexCart].cartQuantity + quantity < 1) {
+      //if items cart quantity is less than 1 remove from cart
+      if (newCart[indexCart].cartQuantity + change < 1) {
         newCart[indexCart].cartQuantity = 0;
         newCart.splice(indexCart, 1);
-
+        //update existing cart item
       } else {
-        newCart[indexCart].cartQuantity += quantity;
+        newCart[indexCart].cartQuantity += change;
+        newCart[indexCart].comments = dish.comments;
+        newCart[indexCart].dishOwner = dish.dishOwner;
+        setCartItems(newCart);
       }
     }
     setCartItems(newCart);
 
   }
-  const increaseCartQuantity = (id) => {
-    updateCartQuantity(id, 1);
+  //handles the increase and decrease buttons in the cart
+  const increaseCartQuantity = (id, item) => {
+    updateCartQuantity(id, item, 1);
   }
-  const decreseCartQuantity = (id) => {
-    updateCartQuantity(id, -1);
+  const decreseCartQuantity = (id, item) => {
+    updateCartQuantity(id, item, -1);
   }
+  //----//
   const removeFromCart = (id, quantity) => {
-    updateCartQuantity(id, -quantity);
+    updateCartQuantity(id, undefined, -quantity);
   }
+
   const [popup, setPopup] = useState({
     id: -1,
     is_opened: false,

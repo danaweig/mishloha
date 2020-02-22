@@ -34,7 +34,7 @@ const DishTag = (props) => {
         return (
           <>
           <img className="dish-tag-image" src={tagTypes[index].img} />
-          <span className="dish-tag-desc">{tagTypes[index].title}</span>
+          <span className="dish-tag-desc" >{tagTypes[index].title}</span>
         </>
       )
       })}

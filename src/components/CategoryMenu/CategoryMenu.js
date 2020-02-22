@@ -11,7 +11,7 @@ const CategoryMenu = () => {
 
   return (
     <nav className="CategoryMenu">
-      <Scrollspy items={menuTitles.map(item => { return (item.id) })} currentClassName="is-current">
+      <Scrollspy currentClassName="is-current" items={menuTitles.map(item => { return (item.id) })} >
           {menuTitles.map(title => { return (<li key={title.id}><a href={'#' + title.id}>{title.title}</a></li>) })}
       </Scrollspy>
     </nav >

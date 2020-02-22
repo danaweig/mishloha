@@ -37,7 +37,7 @@ const OrderSummary = (props) => {
             <div className="OrderSummary box">
 
                 {showDelivery ? deliveryContent : ''}
-                <div class="flexRow">
+                <div className="flexRow">
                     <p className="col-50">סה"כ</p> <p className="col-50">{sum} ₪ </p>
                 </div>
             </div>

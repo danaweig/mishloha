@@ -6,9 +6,10 @@ import closeIcon from '../../assets/images/close-modal-icon.png';
 import { menuContext } from '../../contexts/store.js';
 import CartItemQuantity from '../Cart/CartItemQuantity.js';
 import DishTag from '../DishTag/DishTag.js';
+import Dish from 'components/Dish/Dish';
 
 const DishPopup = (props) => {
-    const { menuItems, closePopup, openPopup, updateCartQuantity,/* updateFields*/ } = useContext(menuContext);
+    const { menuItems, closePopup, openPopup, updateCartQuantity } = useContext(menuContext);
     let dishItem = {};
     const [dish, setDish] = useState({ ...dishItem });
     let commentsInput = useRef(null);
@@ -21,8 +22,6 @@ const DishPopup = (props) => {
         } else {
             setDish({ ...dishItem });
         }
-
-
     }, [props.id]);
 
     const increaseDish = () => {
@@ -43,17 +42,22 @@ const DishPopup = (props) => {
         dishItem = menuItems.find((item) => { return item.id === props.id });
 
         const change = dish.cartQuantity - dishItem.cartQuantity;
+       
         setDish(
             {
                 ...dish,
                 cartQuantity: dish.cartQuantity,
                 comments: commentsInput.current.value,
-                dishOwner: newNameInput.current.value,
+                dishOwner: newNameInput.current.value
             });
-        if (change != 0)
-            updateCartQuantity(dish.id, change);
-        // updateFields(dish.comments,dish.newNameInput);
+        if (dish !== dishItem){
+            dish.comments = commentsInput.current.value;
+            dish.dishOwner = newNameInput.current.value;
+            updateCartQuantity(dish.id, dish, change);}
         closePopup();
+
+        commentsInput.current.value = null;
+        newNameInput.current.value = null;
     }
     const style = dish ? { backgroundImage: `url(${dish.image})` } : '';
 

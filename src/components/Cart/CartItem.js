@@ -9,7 +9,7 @@ import DishPopup from '../DishPopup/DishPopup.js';
 import CartItemQuantity from './CartItemQuantity.js';
 
 const CartItem = (props) => {
-  const { cartItems, increaseCartQuantity, decreseCartQuantity, openPopup, removeFromCart } = useContext(menuContext);
+  const { increaseCartQuantity, decreseCartQuantity, openPopup, removeFromCart } = useContext(menuContext);
 
   const addComments = () => {
     return (
@@ -22,7 +22,6 @@ const CartItem = (props) => {
       <p className="cart-item-comments"><b>שם על המנה: </b>{props.owner}</p>
     )
   }
-
   return (
     <div className="cartItem" >
       <div className="cartItemRight">
@@ -35,12 +34,12 @@ const CartItem = (props) => {
           <span>₪{props.price}</span>
         </div>
         <p className="cartItemDescription">{props.desc}</p>
-        <span>{props.item.hasOwnProperty('comments') ? (addComments()) : null}</span>
-        <span> {props.item.hasOwnProperty('dishOwner') ? (addDishOwner()) : null}</span>
+        <span>{props.item.comments !== "" ? (addComments()) : null}</span>
+        <span> {props.item.dishOwner !== "" ? (addDishOwner()) : null}</span>
         <div className="cartItemQuantityContainer">
           <button className="cartItemQuantityBtn" onClick={() => openPopup(props.id)}>🖊️</button>
-          <CartItemQuantity increase={() => increaseCartQuantity(props.id)}
-            decrease={() => decreseCartQuantity(props.id)}
+          <CartItemQuantity increase={() => increaseCartQuantity(props.id, props.item)}
+            decrease={() => decreseCartQuantity(props.id, props.item)}
             itemQuantity={props.itemQuantity} />
         </div>
       </div>

@@ -8,13 +8,13 @@ const RestaurantDescription = () => {
 
     return (
         <div className="RestaurantDescription">
-            <div class="container">
-                <div class="flexRow">
-                    <div class="restDesc">
+            <div className="container">
+                <div className="flexRow">
+                    <div className="restDesc">
                         <h2>{restaurantDetails.name}</h2>
                         <p>{restaurantDetails.description}</p>
                     </div>
-                    <div class="map">
+                    <div className="map">
                         <img src={Map} />
                         <p className="tooltip">{restaurantDetails.address}</p>
                     </div>

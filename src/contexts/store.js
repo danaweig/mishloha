@@ -73,8 +73,8 @@ const MenuContextProvider = (props) => {
       desc: "2 יחידות. אטריות שעועית, טופו, בטטה קריספי, כוסברה, עירית, אבוקדו, גזר ונבטים, מוגש עם רוטב ויאטנמי חריף.",
       price: 32,
       image: "images/dish1.jpg",
-      tag: [3, 4],
-      liked: false,
+      tag: [3,4],
+      liked: true,
       cartQuantity: 0,
       itemCategory: 1,
       likeCount: 32,
@@ -85,9 +85,9 @@ const MenuContextProvider = (props) => {
       desc: "סלט תאילנדי חריף עם נתחי דג פריכים. חריף.",
       price: 45,
       image: "images/dish2.jpg",
-      tag: [3, 4],
+      tag: [3,4],
       liked: false,
-      cartQuantity: 3,
+      cartQuantity: 0,
       itemCategory: 2,
       likeCount: 12,
     },
@@ -99,7 +99,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish2.jpg",
       tag: [3],
       liked: false,
-      cartQuantity: 4,
+      cartQuantity: 0,
       itemCategory: 3,
       likeCount: 0,
 
@@ -110,11 +110,11 @@ const MenuContextProvider = (props) => {
       desc: "עוף בציפוי טמפורה ופצפוצי אורז, עם רוטב בברבקיו קוריאני.",
       price: 36,
       image: "images/dish1.jpg",
-      tag: [1, 2, 3],
+      tag: [1,2,3],
       liked: false,
       cartQuantity: 0,
       itemCategory: 4,
-      likeCount: 5,
+      likeCount: 1,
 
     },
     {
@@ -133,56 +133,62 @@ const MenuContextProvider = (props) => {
   ]);
 
 
-  const [cartItems, setCartItems] = useState(
-    menuItems.filter(item => item.cartQuantity > 0)
-  );
+  const [cartItems, setCartItems] = useState(menuItems.filter(item => item.cartQuantity > 0));
 
-  const updateCartQuantity = (id, quantity) => {
+
+  const increaseCartQuantity = (id) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
-
     if (indexCart === -1) {
       const indexMenu = menuItems.findIndex(item => item.id === id);
       newCart.push(menuItems[indexMenu]);
-      newCart[newCart.length - 1].cartQuantity += quantity;
+      newCart[newCart.length - 1].cartQuantity++;
       setCartItems(newCart);
     } else {
-      if (newCart[indexCart].cartQuantity + quantity < 1) {
-        newCart[indexCart].cartQuantity = 0;
-        newCart.splice(indexCart, 1);
-
-      } else {
-        newCart[indexCart].cartQuantity += quantity;
-      }
+      newCart[indexCart].cartQuantity++;
       setCartItems(newCart);
-    }
-    console.log(cartItems);
-    console.log(menuItems);
+    };
+  }
 
-  }
-  const increaseCartQuantity = (id) => {
-    updateCartQuantity(id, 1);
-  }
   const decreseCartQuantity = (id) => {
-    updateCartQuantity(id, -1);
+    const indexCart = cartItems.findIndex(item => item.id === id);
+    let newCart = [...cartItems];
+    newCart[indexCart].cartQuantity === 1 ? newCart.splice(indexCart, 1) : newCart[indexCart].cartQuantity--;
+    console.log(indexCart)
+    setCartItems(newCart);
   }
-  const [popup, setPopup] = useState({
+  const [popup, updatePopup] = useState({
     id: -1,
     is_opened: false,
   });
 
   const openPopup = (id) => {
-    setPopup({
+    updatePopup({
       id,
-      is_opened: true,
-    });
+      is_opened: true
+    })
   }
   const closePopup = () => {
-    setPopup({
+    updatePopup({
       id: -1,
       is_opened: false
-    });
+    })
   }
+
+  const likeNum = (props) => {
+   const index = menuItems.findIndex(i => i.id === props.id)
+   let likeStatus = [...menuItems];
+   console.log(likeStatus[index].likeCount)
+   const doYouLike = likeStatus[index].liked;
+   likeStatus[index].liked = !likeStatus[index].liked
+
+   if (doYouLike){
+  likeStatus[index].likeCount--;
+  setMenuItems(likeStatus);
+}else{
+  likeStatus[index].likeCount++;
+  setMenuItems(likeStatus);
+}};
 
   return (
     <menuContext.Provider value={
@@ -192,10 +198,9 @@ const MenuContextProvider = (props) => {
         cartItems,
         increaseCartQuantity,
         decreseCartQuantity,
-        updateCartQuantity,
         popup,
-        closePopup,
-        openPopup
+        openPopup,
+        likeNum
       }
     }>
       {props.children}

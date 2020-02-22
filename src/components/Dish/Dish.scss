@@ -90,17 +90,19 @@
           overflow: hidden;
           width: 35%;
       }
-        .like {
+        .like , .likeOn{
           position: absolute;
           fill: gray;
-          opacity: 75%;
+          opacity: 85%;
           margin: 0.5%;
           right: 6px;
           top: 6px;
+          cursor: grabbing;
+          caret-color: green;
       }
-        .like:hover, .likeOn{
+         .likeOn{
           fill: deeppink;
-
+          cursor: grab;
         }
         .cartItemHeader {
           display: flex;

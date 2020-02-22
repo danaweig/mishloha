@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import CartItem from '../Cart/CartItem.js';
 import './Cart.scss';
 import { menuContext } from '../../contexts/store.js';
-//import MenuContextProvider from '../../contexts/store.js';
 
 
 
 const Cart = () => {
 
-  const { cartItems } = useContext(menuContext);
-
+  const { cartItems, updateCartItemsStorage, updateTimeOutStorage } = useContext(menuContext);
   const empty = () => {
     return (
       <div className="emptyCart">

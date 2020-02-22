@@ -3,6 +3,29 @@ import React, { useState, createContext, useEffect } from "react";
 export const menuContext = createContext();
 
 const MenuContextProvider = (props) => {
+
+  const useLocalStroage = (key, initialValue) => {
+
+    const [localStorageState, setLocalStorageState] = useState(() => {
+      try {
+        const item = localStorage.getItem(key);
+        return item ? item : initialValue;
+      } catch (error) {
+        console.log(error);
+        return initialValue;
+      }
+    });
+
+    const changeState = (newValue) => {
+      localStorage.setItem(key, newValue);
+    }
+
+    useEffect(() => {
+      changeState(localStorageState);
+    }, [localStorageState]);
+
+    return [localStorageState, setLocalStorageState];
+  }
   const menuTitles = [
     {
       id: 1,
@@ -87,7 +110,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish2.jpg",
       tag: [3, 4],
       liked: false,
-      cartQuantity: 3,
+      cartQuantity: 0,
       itemCategory: 2,
       likeCount: 12,
     },
@@ -99,7 +122,7 @@ const MenuContextProvider = (props) => {
       image: "images/dish2.jpg",
       tag: [3],
       liked: false,
-      cartQuantity: 4,
+      cartQuantity: 0,
       itemCategory: 3,
       likeCount: 0,
     },
@@ -131,11 +154,25 @@ const MenuContextProvider = (props) => {
     }
   ]);
 
+  const [cartItemsStorage, updateCartItemsStorage] = useLocalStroage('cartItems', []);
+  const [timeOutStorage, updateTimeOutStorage] = useLocalStroage('timeOut', new Date().getTime());
 
-  const [cartItems, setCartItems] = useState(
-    menuItems.filter(item => item.cartQuantity > 0)
-  );
 
+  const [cartItems, setCartItems] = useState(() => {
+
+    let isDayPassed = new Date().getTime() > localStorage.getItem('timeOut');
+    if (isDayPassed) {
+      return [];
+    } else {
+      return cartItemsStorage ? JSON.parse(cartItemsStorage) : [];
+    }
+
+  });
+  useEffect(() => {
+    updateCartItemsStorage(JSON.stringify(cartItems));
+    updateTimeOutStorage(new Date().getTime() + (24 * 60 * 60 * 1000));
+
+  }, [cartItems]);
   const [isDelivery, updateDelivery] = useState(true);
 
   const restaurantDetails = {
@@ -158,7 +195,6 @@ const MenuContextProvider = (props) => {
       const indexMenu = menuItems.findIndex(item => item.id === id);
       newCart.push(menuItems[indexMenu]);
       newCart[newCart.length - 1].cartQuantity += quantity;
-      setCartItems(newCart);
     } else {
       if (newCart[indexCart].cartQuantity + quantity < 1) {
         newCart[indexCart].cartQuantity = 0;
@@ -167,8 +203,8 @@ const MenuContextProvider = (props) => {
       } else {
         newCart[indexCart].cartQuantity += quantity;
       }
-      setCartItems(newCart);
     }
+    setCartItems(newCart);
 
   }
   const increaseCartQuantity = (id) => {
@@ -213,7 +249,10 @@ const MenuContextProvider = (props) => {
         isDelivery,
         updateDelivery,
         restaurantDetails,
-        removeFromCart
+        removeFromCart,
+        useLocalStroage,
+        updateCartItemsStorage,
+        updateTimeOutStorage
       }
     }>
       {props.children}

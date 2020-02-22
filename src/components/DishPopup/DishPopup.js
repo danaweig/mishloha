@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-// import DishPopupDetails from './DishPopupDetails/DishPopupDetails';
 import './DishPopup.scss';
 import dish from '../../assets/images/dish.jpg';
 import closeIcon from '../../assets/images/close-modal-icon.png';
@@ -8,19 +7,26 @@ import CartItemQuantity from '../Cart/CartItemQuantity.js';
 import DishTag from '../DishTag/DishTag.js';
 
 const DishPopup = (props) => {
-    const { menuItems, closePopup, openPopup, updateCartQuantity,/* updateFields*/ } = useContext(menuContext);
+    const { menuItems, cartItems, closePopup, openPopup, updateCartQuantity,/* updateFields*/ } = useContext(menuContext);
     let dishItem = {};
+    let dishInCart = {};
     const [dish, setDish] = useState({ ...dishItem });
     let commentsInput = useRef(null);
     let newNameInput = useRef(null);
 
     useEffect(() => {
         dishItem = menuItems.find((item) => { return item.id === props.id });
-        if (dishItem && dishItem.cartQuantity === 0) {
-            setDish({ ...dishItem, cartQuantity: 1 });
+        dishInCart = cartItems.find((item) => { return item.id === props.id });
+        if (dishInCart) {
+            if (dishInCart.cartQuantity === 0) {
+                setDish({ ...dishItem, cartQuantity: 1 });
+            } else {
+                setDish({ ...dishItem, cartQuantity: dishInCart.cartQuantity });
+            }
         } else {
-            setDish({ ...dishItem });
+            setDish({ ...dishItem, cartQuantity: 1 });
         }
+
 
 
     }, [props.id]);
@@ -40,9 +46,8 @@ const DishPopup = (props) => {
 
     const handleForm = (event) => {
         event.preventDefault();
-        dishItem = menuItems.find((item) => { return item.id === props.id });
-
-        const change = dish.cartQuantity - dishItem.cartQuantity;
+        dishInCart = cartItems.find((item) => { return item.id === props.id });
+        const change = dish.cartQuantity - (dishInCart ? dishInCart.cartQuantity : 0);
         setDish(
             {
                 ...dish,
@@ -50,9 +55,7 @@ const DishPopup = (props) => {
                 comments: commentsInput.current.value,
                 dishOwner: newNameInput.current.value,
             });
-        if (change != 0)
-            updateCartQuantity(dish.id, change);
-        // updateFields(dish.comments,dish.newNameInput);
+        updateCartQuantity(dish.id, change);
         closePopup();
     }
     const style = dish ? { backgroundImage: `url(${dish.image})` } : '';
@@ -64,15 +67,6 @@ const DishPopup = (props) => {
                 <button className="closeModal" onClick={closePopup}>
                     <img src={closeIcon} alt="search" />
                 </button>
-                {/* <DishPopupDetails
-                    title={dish ? dish.title : ''}
-                    description={dish ? dish.description : ''}
-                    price={dish ? dish.price : ''}
-                    tag={dish ? "popular" : []}
-                    image={dish ? dish.image : ''}
-                    liked={dish ? dish.liked : false}
-                    likeCount={dish ? dish.likeCount : 'false'}
-                /> */}
                 <div className="DishPopupDetails" style={style}>
                     <div className="overlay"></div>
                     <div className="flexRow">

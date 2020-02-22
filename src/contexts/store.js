@@ -176,18 +176,20 @@ const MenuContextProvider = (props) => {
   }
 
   const likeNum = (props) => {
-   const index = menuItems.findIndex(i => i.id === props.id)
+   const index = menuItems.findIndex(i => i.id === props.id);
    let likeStatus = [...menuItems];
-   console.log(likeStatus[index].likeCount)
    const doYouLike = likeStatus[index].liked;
-   likeStatus[index].liked = !likeStatus[index].liked
+   likeStatus[index].liked = !likeStatus[index].liked;
 
    if (doYouLike){
   likeStatus[index].likeCount--;
   setMenuItems(likeStatus);
+  console.log(likeStatus[index].likeCount, doYouLike);
 }else{
   likeStatus[index].likeCount++;
   setMenuItems(likeStatus);
+  console.log(likeStatus[index].likeCount);
+
 }};
 
   return (

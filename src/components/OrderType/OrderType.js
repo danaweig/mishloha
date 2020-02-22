@@ -1,47 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../../index.scss';
 import './OrderType.scss';
+import { menuContext } from "contexts/store";
 
-const OrderType = (props) => {
-    const [type, changeType] = useState(0); //0 for delivery and 1 for take away
+const OrderType = () => {
+    const { isDelivery, updateDelivery, restaurantDetails } = useContext(menuContext);
+
     const deliveryContent = (
-        <table>
-            <tbody>
-                <tr>
-                    <td>זמן משלוח</td> <td><span> 40-60 דקות </span></td>
-                </tr>
-                <tr>
-                    <td>דמי משלוח</td> <td><span>12 ₪ </span></td>
-                </tr>
-                <tr>
-                    <td>דמי משלוח</td> <td><span>110 ₪ </span></td>
-                </tr>
+        <>
+            <div className="flexRow"><p className="col-50">זמן משלוח</p><p className="col-50"> {restaurantDetails.deliveryTime} דקות </p></div>
+            <div className="flexRow"><p className="col-50">דמי משלוח</p><p className="col-50"> {restaurantDetails.deliveryPrice} ₪ </p></div>
+            <div className="flexRow"><p className="col-50">מינימום משלוח</p><p className="col-50"> {restaurantDetails.deliveryMinimum} ₪  </p></div>
 
-            </tbody>
-        </table>
+        </>
     );
     const takeawayContent = (
-        <table>
-            <tbody>
-                <tr>
-                    <td>זמן לאיסוף</td> <td><span> 30 דקות </span></td>
-                </tr>
-            </tbody>
-        </table>
+        <>
+            <div className="flexRow"><p className="col-50">זמן לאיסוף</p><p className="col-50"> {restaurantDetails.takeawayTime} דקות </p></div>
+        </>
     );
-    const changeOrderType = () => {
-        if (type == 0)
-            changeType(1);
-        else {
-            changeType(0);
-        }
-    }
+
     return (
         <div className="OrderType box">
-            <button className="delivary" className={type == 0 ? 'active' : ''} onClick={changeOrderType}>משלוח</button>
-            <button className="takaway" className={type == 1 ? 'active' : ''} onClick={changeOrderType}>איסוף עצמי</button>
+            <button className="delivery" className={isDelivery ? 'active' : ''} onClick={() => { updateDelivery(true) }}>משלוח</button>
+            <button className="takaway" className={!isDelivery ? 'active' : ''} onClick={() => { updateDelivery(false) }}>איסוף עצמי</button>
             <div className="typeCaption">
-                {type == 0 ? deliveryContent : takeawayContent}
+                {isDelivery ? deliveryContent : takeawayContent}
             </div>
         </div>
 

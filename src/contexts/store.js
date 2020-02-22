@@ -3,6 +3,29 @@ import React, { useState, createContext, useEffect } from "react";
 export const menuContext = createContext();
 
 const MenuContextProvider = (props) => {
+
+  const useLocalStroage = (key, initialValue) => {
+
+    const [localStorageState, setLocalStorageState] = useState(() => {
+      try {
+        const item = localStorage.getItem(key);
+        return item ? item : initialValue;
+      } catch (error) {
+        console.log(error);
+        return initialValue;
+      }
+    });
+
+    const changeState = (newValue) => {
+      localStorage.setItem(key, newValue);
+    }
+
+    useEffect(() => {
+      changeState(localStorageState);
+    }, [localStorageState]);
+
+    return [localStorageState, setLocalStorageState];
+  }
   const menuTitles = [
     {
       id: 1,
@@ -78,6 +101,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 1,
       likeCount: 32,
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1592,
@@ -90,6 +115,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 2,
       likeCount: 12,
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1593,
@@ -102,7 +129,8 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 3,
       likeCount: 0,
-
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1594,
@@ -114,8 +142,9 @@ const MenuContextProvider = (props) => {
       liked: false,
       cartQuantity: 0,
       itemCategory: 4,
-      likeCount: 1,
-
+      likeCount: 5,
+      comments: "",
+      dishOwner: "",
     },
     {
       id: 1595,
@@ -128,36 +157,87 @@ const MenuContextProvider = (props) => {
       cartQuantity: 0,
       itemCategory: 5,
       likeCount: 2,
+      comments: "",
+      dishOwner: "",
 
     }
   ]);
 
+  const [cartItemsStorage, updateCartItemsStorage] = useLocalStroage('cartItems', []);
+  const [timeOutStorage, updateTimeOutStorage] = useLocalStroage('timeOut', new Date().getTime());
 
-  const [cartItems, setCartItems] = useState(menuItems.filter(item => item.cartQuantity > 0));
 
+  const [cartItems, setCartItems] = useState(() => {
 
-  const increaseCartQuantity = (id) => {
+    let isDayPassed = new Date().getTime() > localStorage.getItem('timeOut');
+    if (isDayPassed) {
+      return [];
+    } else {
+      return cartItemsStorage ? JSON.parse(cartItemsStorage) : [];
+    }
+
+  });
+  useEffect(() => {
+    updateCartItemsStorage(JSON.stringify(cartItems));
+    updateTimeOutStorage(new Date().getTime() + (24 * 60 * 60 * 1000));
+
+  }, [cartItems]);
+  const [isDelivery, updateDelivery] = useState(true);
+
+  const restaurantDetails = {
+    name: 'גו נודלס תל אביב שדרות יהודית',
+    description: `גו נודלס ת"א מתמחה בנודלס איכותי במתכונת בריאה. בתור מנות פתיחה תוכלו ליהנות ממבחר אגרולים, מרקים וסלטים סיניים רעננים. כמנה עיקרית תוכלו לבחור משלל סוגי הנודלס ברטבים שונים כולל נודלס מאטריות ביצים, נודלס מחיטה מלאה, אטריות אורז, אטריות שעועית או ממגוון מנות בשריות בתוספת אורז כמו למשל מנת הצ'ופסוי המוכרת, עוף בלימון ועוד. לסיום אפשר לקנח במנת בננה לוטי מתקתקה מעולה של גו נודלס או אולי קרם קוקוס מיוחד.nבנוסף מציעה מסעדת גו נודלס ת"א גם מבחר ארוחות עסקיות במחירים נוחים מאד כמו גם שירות משלוחים בעלות של 7 ₪ לתל אביב, רמת גן וגבעתיים.nלחובבי הנודלס ולכל מי שמחפש אוכל טעים, בריא ומהיר עם ניחוחות סיניים, גו נודלס ת"א הוא המקום להזמין ממנו.`,
+    address: `שדרות יהודית, תל אביב`,
+    phone: '03-3002532',
+    deliveryTime: '40-60',
+    deliveryPrice: '12',
+    deliveryMinimum: '60',
+    takeawayTime: '30',
+    logo: 'images/restLogo.png',
+    heroImage: 'images/restBg.jpg'
+  };
+
+  const updateCartQuantity = (id, dish, change) => {
     const indexCart = cartItems.findIndex(item => item.id === id);
     let newCart = [...cartItems];
+
+    //if item dosn't exist in cart - add to cart
     if (indexCart === -1) {
       const indexMenu = menuItems.findIndex(item => item.id === id);
       newCart.push(menuItems[indexMenu]);
-      newCart[newCart.length - 1].cartQuantity++;
+      newCart[newCart.length - 1].cartQuantity = dish.cartQuantity;
+      newCart[newCart.length - 1].comments = dish.comments;
+      newCart[newCart.length - 1].dishOwner = dish.dishOwner;
       setCartItems(newCart);
     } else {
-      newCart[indexCart].cartQuantity++;
-      setCartItems(newCart);
-    };
+      //if items cart quantity is less than 1 remove from cart
+      if (newCart[indexCart].cartQuantity + change < 1) {
+        newCart[indexCart].cartQuantity = 0;
+        newCart.splice(indexCart, 1);
+        //update existing cart item
+      } else {
+        newCart[indexCart].cartQuantity += change;
+        newCart[indexCart].comments = dish.comments;
+        newCart[indexCart].dishOwner = dish.dishOwner;
+        setCartItems(newCart);
+      }
+    }
+    setCartItems(newCart);
+
+  }
+  //handles the increase and decrease buttons in the cart
+  const increaseCartQuantity = (id, item) => {
+    updateCartQuantity(id, item, 1);
+  }
+  const decreseCartQuantity = (id, item) => {
+    updateCartQuantity(id, item, -1);
+  }
+  //----//
+  const removeFromCart = (id, quantity) => {
+    updateCartQuantity(id, undefined, -quantity);
   }
 
-  const decreseCartQuantity = (id) => {
-    const indexCart = cartItems.findIndex(item => item.id === id);
-    let newCart = [...cartItems];
-    newCart[indexCart].cartQuantity === 1 ? newCart.splice(indexCart, 1) : newCart[indexCart].cartQuantity--;
-    console.log(indexCart)
-    setCartItems(newCart);
-  }
-  const [popup, updatePopup] = useState({
+  const [popup, setPopup] = useState({
     id: -1,
     is_opened: false,
   });
@@ -202,7 +282,16 @@ const MenuContextProvider = (props) => {
         decreseCartQuantity,
         popup,
         openPopup,
-        likeNum
+        likeNum,
+        closePopup,
+        openPopup,
+        isDelivery,
+        updateDelivery,
+        restaurantDetails,
+        removeFromCart,
+        useLocalStroage,
+        updateCartItemsStorage,
+        updateTimeOutStorage
       }
     }>
       {props.children}

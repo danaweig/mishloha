@@ -8,9 +8,9 @@ const CartItemQuantity = (props) => {
 
   return (
     <div className="cartItemQuantity">
-      <button onClick={props.increase}>+</button>
+      <button className="cartItemQuantityBtn" onClick={props.increase}>+</button>
       <span>{props.itemQuantity}</span>
-      <button onClick={props.decrease}>-</button>
+      <button className="cartItemQuantityBtn" onClick={props.decrease}>-</button>
     </div>
   )
 }

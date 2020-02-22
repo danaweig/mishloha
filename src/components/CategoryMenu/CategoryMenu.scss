@@ -3,19 +3,18 @@ html {
   overflow-y: scroll;
 }
 
-.CategoryMenu{
-
-  display: inline-block;
-  width: 180px;
+.CategoryMenu {
+  display: block;
   background-color: #fff;
-  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2);
-  margin-right: 30px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 3px;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
 
   ul{
     padding: 23px;
+    margin: 0;
   }
 
   li{
@@ -31,10 +30,13 @@ html {
     border: none;
   }
 
-  li:active{
+  .is-current {
     background-color: #f16f24;
     border-radius: 3px; 
     border-top: none;
+    a{
+      color: #fff;
+    }
   }
 
   a{

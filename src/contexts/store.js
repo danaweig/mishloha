@@ -205,9 +205,8 @@ const MenuContextProvider = (props) => {
     if (indexCart === -1) {
       const indexMenu = menuItems.findIndex(item => item.id === id);
       newCart.push(menuItems[indexMenu]);
-      newCart[newCart.length - 1].cartQuantity = dish.cartQuantity;
-      newCart[newCart.length - 1].comments = dish.comments;
-      newCart[newCart.length - 1].dishOwner = dish.dishOwner;
+      [newCart[newCart.length - 1].cartQuantity,newCart[newCart.length - 1].comments,newCart[newCart.length - 1].dishOwner] = 
+      [dish.cartQuantity, dish.comments, dish.dishOwner];
       setCartItems(newCart);
     } else {
       //if items cart quantity is less than 1 remove from cart
@@ -217,8 +216,7 @@ const MenuContextProvider = (props) => {
         //update existing cart item
       } else {
         newCart[indexCart].cartQuantity += change;
-        newCart[indexCart].comments = dish.comments;
-        newCart[indexCart].dishOwner = dish.dishOwner;
+        [newCart[indexCart].comments, newCart[indexCart].dishOwner] = [dish.comments, dish.dishOwner];
         setCartItems(newCart);
       }
     }

@@ -25,18 +25,18 @@ const Dishes = (props) => {
                     menuTitles.map(catItem => {
                         return (
                             <div>
-                                <CategoryTitle key={catItem.id}
+                                <CategoryTitle key={catItem._id}
                                     title={catItem.title}
-                                    desc={catItem.desc} id={catItem.id} />
+                                    desc={catItem.desc} id={catItem._id} />
                                 <div>
                                     {
                                         menuItems.filter(item => {
-                                            return item.itemCategory === catItem.id
+                                            return item.itemCategory === catItem._id
                                         }).map(item => {
                                             return (
                                                 <Dish
-                                                    id={item.id}
-                                                    key={item.id}
+                                                    id={item._id}
+                                                    key={item._id}
                                                     title={item.title}
                                                     desc={item.desc}
                                                     price={item.price}

@@ -31,8 +31,8 @@ const Cart = () => {
                   title={item.title}
                   price={item.price}
                   desc={item.desc}
-                  key={item.id}
-                  id={item.id}
+                  key={item._id}
+                  id={item._id}
                   itemQuantity={item.cartQuantity}
                   comment={item.comments}
                   owner={item.dishOwner}

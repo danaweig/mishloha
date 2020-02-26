@@ -26,6 +26,29 @@ const MenuContextProvider = (props) => {
 
     return [localStorageState, setLocalStorageState];
   }
+
+  const [menuTitles, setmenuTitles] = useState([]);
+  useEffect(() => {
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then(categories => { setmenuTitles(categories); });
+  }, []);
+  const [menuItems, setMenuItems] = useState([]);
+  useEffect(() => {
+    fetch('/api/menuItems')
+      .then(res => res.json())
+      .then(menuItems => { setMenuItems(menuItems); });
+  }, []);
+
+  const [restaurantDetails, setRestaurantDetails] = useState([]);
+  useEffect(() => {
+    const restaurants = [];
+    fetch('/api/restaurants')
+      .then(res => res.json())
+      .then(restaurants => { setRestaurantDetails(restaurants[0]); });
+    ;
+  }, []);
+  /*
   const menuTitles = [
     {
       id: 1,
@@ -44,7 +67,7 @@ const MenuContextProvider = (props) => {
     },
     {
       id: 4,
-      title: "אורז ועיקיות",
+    title: "אורז ועיקריות",
       desc: "לורם איפסום"
     },
     {
@@ -88,7 +111,21 @@ const MenuContextProvider = (props) => {
       desc: "לורם איפסום",
     },
   ];
+*/
 
+  /*const restaurantDetails = {
+    name: 'גו נודלס תל אביב שדרות יהודית',
+    description: `גו נודלס ת"א מתמחה בנודלס איכותי במתכונת בריאה. בתור מנות פתיחה תוכלו ליהנות ממבחר אגרולים, מרקים וסלטים סיניים רעננים. כמנה עיקרית תוכלו לבחור משלל סוגי הנודלס ברטבים שונים כולל נודלס מאטריות ביצים, נודלס מחיטה מלאה, אטריות אורז, אטריות שעועית או ממגוון מנות בשריות בתוספת אורז כמו למשל מנת הצ'ופסוי המוכרת, עוף בלימון ועוד. לסיום אפשר לקנח במנת בננה לוטי מתקתקה מעולה של גו נודלס או אולי קרם קוקוס מיוחד.nבנוסף מציעה מסעדת גו נודלס ת"א גם מבחר ארוחות עסקיות במחירים נוחים מאד כמו גם שירות משלוחים בעלות של 7 ₪ לתל אביב, רמת גן וגבעתיים.nלחובבי הנודלס ולכל מי שמחפש אוכל טעים, בריא ומהיר עם ניחוחות סיניים, גו נודלס ת"א הוא המקום להזמין ממנו.`,
+    address: `שדרות יהודית, תל אביב`,
+    phone: '03-3002532',
+    deliveryTime: '40-60',
+    deliveryPrice: '12',
+    deliveryMinimum: '60',
+    takeawayTime: '30',
+    logo: 'images/restLogo.png',
+    heroImage: 'images/restBg.jpg'
+  };*/
+  /*
   const [menuItems, setMenuItems] = useState([
     {
       id: 1591,
@@ -162,7 +199,7 @@ const MenuContextProvider = (props) => {
 
     }
   ]);
-
+  */
   const [cartItemsStorage, updateCartItemsStorage] = useLocalStroage('cartItems', []);
   const [timeOutStorage, updateTimeOutStorage] = useLocalStroage('timeOut', new Date().getTime());
 
@@ -184,29 +221,17 @@ const MenuContextProvider = (props) => {
   }, [cartItems]);
   const [isDelivery, updateDelivery] = useState(true);
 
-  const restaurantDetails = {
-    name: 'גו נודלס תל אביב שדרות יהודית',
-    description: `גו נודלס ת"א מתמחה בנודלס איכותי במתכונת בריאה. בתור מנות פתיחה תוכלו ליהנות ממבחר אגרולים, מרקים וסלטים סיניים רעננים. כמנה עיקרית תוכלו לבחור משלל סוגי הנודלס ברטבים שונים כולל נודלס מאטריות ביצים, נודלס מחיטה מלאה, אטריות אורז, אטריות שעועית או ממגוון מנות בשריות בתוספת אורז כמו למשל מנת הצ'ופסוי המוכרת, עוף בלימון ועוד. לסיום אפשר לקנח במנת בננה לוטי מתקתקה מעולה של גו נודלס או אולי קרם קוקוס מיוחד.nבנוסף מציעה מסעדת גו נודלס ת"א גם מבחר ארוחות עסקיות במחירים נוחים מאד כמו גם שירות משלוחים בעלות של 7 ₪ לתל אביב, רמת גן וגבעתיים.nלחובבי הנודלס ולכל מי שמחפש אוכל טעים, בריא ומהיר עם ניחוחות סיניים, גו נודלס ת"א הוא המקום להזמין ממנו.`,
-    address: `שדרות יהודית, תל אביב`,
-    phone: '03-3002532',
-    deliveryTime: '40-60',
-    deliveryPrice: '12',
-    deliveryMinimum: '60',
-    takeawayTime: '30',
-    logo: 'images/restLogo.png',
-    heroImage: 'images/restBg.jpg'
-  };
-
   const updateCartQuantity = (id, dish, change) => {
-    const indexCart = cartItems.findIndex(item => item.id === id);
+    const indexCart = cartItems.findIndex(item => item._id === id);
     let newCart = [...cartItems];
 
     //if item dosn't exist in cart - add to cart
     if (indexCart === -1) {
-      const indexMenu = menuItems.findIndex(item => item.id === id);
+      const indexMenu = menuItems.findIndex(item => item._id === id);
       newCart.push(menuItems[indexMenu]);
-      [newCart[newCart.length - 1].cartQuantity,newCart[newCart.length - 1].comments,newCart[newCart.length - 1].dishOwner] = 
-      [dish.cartQuantity, dish.comments, dish.dishOwner];
+      newCart[newCart.length - 1].cartQuantity = dish.cartQuantity;
+      newCart[newCart.length - 1].comments = dish.comments;
+      newCart[newCart.length - 1].dishOwner = dish.dishOwner;
       setCartItems(newCart);
     } else {
       //if items cart quantity is less than 1 remove from cart

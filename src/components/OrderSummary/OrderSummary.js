@@ -2,8 +2,10 @@ import React, { useState, useContext, useEffect } from 'react';
 import '../../index.scss';
 import './OrderSummary.scss';
 import arrowIcon from '../../assets/images/continue.png';
+import {Link, NavLink} from 'react-router-dom';
 
 import { menuContext } from "contexts/store";
+import Payment from 'components/Payment/Payment';
 
 const OrderSummary = (props) => {
     const { cartItems, isDelivery, restaurantDetails } = useContext(menuContext);
@@ -41,9 +43,12 @@ const OrderSummary = (props) => {
                     <p className="col-50">סה"כ</p> <p className="col-50">{sum} ₪ </p>
                 </div>
             </div>
-            <button className="continueOrder">
-                המשך <i style={style}></i>
+            {props.payment ? <Payment /> : null}
+            <NavLink to="/payment">
+            <button className="continueOrder" >
+                {!props.text ? "המשך" : props.text} <i style={style}></i>
             </button>
+            </NavLink>
         </>
     );
 };

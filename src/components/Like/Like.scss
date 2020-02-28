@@ -1,0 +1,24 @@
+
+        // .like , .likeOn{
+        //     position: absolute;
+        //     fill: gray;
+        //     opacity: 85%;
+        //     margin: 0.5%;
+        //     right: 6px;
+        //     top: 6px;
+        //     cursor: grabbing;
+        //     caret-color: green;
+        // }
+        .like, .likeOn {
+            position: relative;
+            fill: gray;
+            opacity: 85%;
+            cursor: grabbing;
+            caret-color: green;
+            display: inline-block;
+            vertical-align: middle;
+        }
+           .likeOn{
+            fill: deeppink;
+            cursor: grab;
+          }

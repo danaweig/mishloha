@@ -237,6 +237,8 @@ const MenuContextProvider = (props) => {
       //if items cart quantity is less than 1 remove from cart
       if (newCart[indexCart].cartQuantity + change < 1) {
         newCart[indexCart].cartQuantity = 0;
+        newCart[indexCart].comments = '';
+        newCart[indexCart].dishOwner = '';
         newCart.splice(indexCart, 1);
         //update existing cart item
       } else {
@@ -277,10 +279,24 @@ const MenuContextProvider = (props) => {
       is_opened: false
     });
   }
+  const likeNum = (props) => {
+    const index = menuItems.findIndex(i => i._id === props.id);
+    let likeStatus = [...menuItems];
+    const doYouLike = likeStatus[index].liked;
+    likeStatus[index].liked = !likeStatus[index].liked;
 
+    if (doYouLike) {
+      likeStatus[index].likeCount--;
+      setMenuItems(likeStatus);
+    } else {
+      likeStatus[index].likeCount++;
+      setMenuItems(likeStatus);
+    }
+  };
   return (
     <menuContext.Provider value={
       {
+        likeNum,
         menuTitles,
         menuItems,
         cartItems,

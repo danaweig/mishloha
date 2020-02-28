@@ -6,9 +6,10 @@ import { menuContext } from '../../contexts/store.js';
 import CartItemQuantity from '../Cart/CartItemQuantity.js';
 import DishTag from '../DishTag/DishTag.js';
 import Dish from 'components/Dish/Dish';
+import Like from 'components/Like/Like';
 
 const DishPopup = (props) => {
-    const { menuItems, cartItems, closePopup, openPopup, updateCartQuantity,/* updateFields*/ } = useContext(menuContext);
+    const { menuItems, cartItems, closePopup, openPopup, updateCartQuantity } = useContext(menuContext);
     let dishItem = {};
     let dishInCart = {};
     let index;
@@ -100,7 +101,9 @@ const DishPopup = (props) => {
                             <p>{dish ? dish.desc : ''}</p>
                             <p className="price"><span>{dish ? dish.price : ''}</span><span>₪</span></p>
                             <DishTag tag={dish && dish.tag ? dish.tag : []} />
-                            <p>{dish ? dish.liked : false} {dish ? dish.likeCount : '0'} אהבו מנה זו</p>
+                            <p className="likeCont"><Like liked={dish.liked} id={dish._id} />
+                                <span>
+                                    {dish ? dish.likeCount : '0'} אהבו מנה זו</span></p>
                             <div className="dishQuantity">
                                 <p>כמות לבחירה</p>
                                 <CartItemQuantity increase={() => increaseDish()}

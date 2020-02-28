@@ -1,0 +1,6 @@
+.idea
+.editorconfig
+*.iml
+node_modules/
+public/
+.DS_Store

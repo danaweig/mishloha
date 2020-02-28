@@ -1,0 +1,18 @@
+.payment-container {
+  padding: 20px 10px 20px 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: #fff;
+  margin-top: 30px; 
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    padding: 9px;
+    border: 1px solid #bdbdbd;
+  }
+}

@@ -241,13 +241,13 @@ const MenuContextProvider = (props) => {
   });
 
   const openPopup = (id) => {
-    updatePopup({
+    setPopup({
       id,
       is_opened: true
     })
   }
   const closePopup = () => {
-    updatePopup({
+    setPopup({
       id: -1,
       is_opened: false
     })

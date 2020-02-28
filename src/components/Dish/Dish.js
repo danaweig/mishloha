@@ -5,7 +5,7 @@ import { menuContext } from "contexts/store";
 import '../Cart/CartItem.scss';
 import DishPopup from "components/DishPopup/DishPopup";
 import DishTag from "components/DishTag/DishTag";
-import SVG from "components/like/like";
+import Like from "components/Like/Like";
 
 const Dish = (props) => {
   const matches = useMediaQuery('(min-width:1000px)');
@@ -19,7 +19,7 @@ const Dish = (props) => {
         <div className="DescCard" >
           <div className="ImageCard">
             <img className="" src={props.image} />
-           <SVG liked={props.liked}  likeCount={props.likeCount} id={props.id}/>
+           <Like liked={props.liked}  likeCount={props.likeCount} id={props.id}/>
           </div>
           <div className="Desc">
 

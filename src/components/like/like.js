@@ -3,7 +3,7 @@ import { menuContext } from "contexts/store";
 
 
 
-const SVG = (props) => {
+const Like = (props) => {
     const { menuItems, likeNum } = useContext(menuContext);
 
 if (props.liked){
@@ -37,4 +37,4 @@ if (props.liked){
 }
               
 
-export default SVG;
+export default Like;

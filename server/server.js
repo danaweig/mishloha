@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 
 });*/
-app.use("/", express.static(path.join(__dirname, '../client/public')));
+app.use("/", express.static(path.join(__dirname, '../client/build')));
 
 //MenuItems API Routes
 app.use('/api/menuItems', require('./api/routes/menuItems'));

@@ -16,11 +16,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Set static folder
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 
-});
-//app.use("/", express.static(path.join(__dirname, '../client/dist')));
+});*/
+app.use("/", express.static(path.join(__dirname, '../client/public')));
 
 //MenuItems API Routes
 app.use('/api/menuItems', require('./api/routes/MenuItems'));

@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/", express.static(path.join(__dirname, '../client/public')));
 
 //MenuItems API Routes
-app.use('/api/menuItems', require('./api/routes/MenuItems'));
+app.use('/api/menuItems', require('./api/routes/menuItems'));
 app.use('/api/categories', require('./api/routes/categories'));
 app.use('/api/restaurants', require('./api/routes/restaurants'));
 

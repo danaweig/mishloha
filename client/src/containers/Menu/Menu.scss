@@ -8,8 +8,15 @@
      .MenuDishes {
         width: 55%;
     }
-.MenuSection {
-    padding: 40px 0;
-}
-    
+    .MenuSection {
+        padding: 40px 0;
+    }
+    @media (max-width: 600px){
+        .pane{
+            display: none;
+        }
+        .MenuDishes {
+            width: 100%;
+        }
+    }
 }

@@ -15,13 +15,13 @@ const Menu = () => {
                 <div className="MenuSection">
                     <div className="container">
                         <div className="flexRow">
-                            <div className="rightPane">
+                            <div className="rightPane pane">
                                 <CategoryMenu />
                             </div>
                             <div className="MenuDishes">
                                 <Dishes />
                             </div>
-                            <div className="leftPane">
+                            <div className="leftPane pane">
                                 <OrderType />
                                 <Cart />
                                 <OrderSummary />

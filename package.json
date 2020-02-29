@@ -7,7 +7,7 @@
     "install-client": "cd client && npm i",
     "install-server": "cd server && npm i",
     "postinstall": "npm run install-client && npm run install-server",
-    "server": "node server/index.js",
+    "server": "node server/server.js",
     "build": "cd client && npm run build"
   },
   "repository": {

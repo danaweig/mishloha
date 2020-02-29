@@ -1,0 +1,23 @@
+{
+  "name": "mishloha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-client": "cd client && npm i",
+    "install-server": "cd server && npm i",
+    "postinstall": "npm run install-client && npm run install-server",
+    "server": "node server/index.js",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danaweig/mishloha.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danaweig/mishloha/issues"
+  },
+  "homepage": "https://github.com/danaweig/mishloha#readme"
+}

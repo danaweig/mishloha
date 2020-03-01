@@ -3,7 +3,9 @@
     background-position: center;
     padding : 60px 0 0;
     text-align: center;
-
+    @media (max-width: 600px) {
+      padding: 60px 5px 0;
+    }
     div.restLogo {
         background-color: rgba(255,255,255,.75);
         min-width: 362px;
@@ -18,11 +20,11 @@
         font-weight: 900;
     }
     .restCaption {
-     
+
         background: rgba(82, 73, 62, 0.85);
-        
+
         * {
-            color: #fff;    
+            color: #fff;
         }
         .container > .flexRow {
             justify-content: space-between;
@@ -81,5 +83,5 @@
     .restOpened {
         background-color: #32af3e;
     }
-    
+
 }

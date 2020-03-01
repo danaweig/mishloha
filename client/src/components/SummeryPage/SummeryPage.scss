@@ -1,6 +1,12 @@
 .summery-page-container-cont {
   width: calc( 1162px * 0.55 );
   margin: 50px auto;
+  @media (max-width: 600px ) {
+    width: 100%;
+    margin: 50px auto;
+    padding: 0 5px;
+
+  }
 }
 .summery-page-container{
   background-color: #fff;
@@ -16,7 +22,7 @@
     .summery-item-content {
       width: 100%;
     }
-    
+
     .summery-item-right {
       display: flex;
       justify-content: center;
@@ -28,12 +34,12 @@
         border-radius: 50%;
         border: 1px solid #d8d9c8;
         background-color: #fff;
-        margin-left: 5px;  
+        margin-left: 5px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-    
+
         img {
           width: 100%;
         }
@@ -46,7 +52,7 @@
     .summery-item-header {
       display: flex;
       justify-content: space-between;
-    
+
       h4 {
         margin-top: 0;
         margin-bottom: 0;
@@ -59,10 +65,10 @@
         span {
           font-weight: bold;
           font-size: 14px;
-          margin-right: 10px; 
+          margin-right: 10px;
         }
       }
-      
+
     }
     .summery-item-description {
       font-size: 12px;

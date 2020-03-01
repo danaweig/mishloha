@@ -10,14 +10,14 @@
     transition-duration: .2s;
     transition-timing-function: ease-in;
     z-index: -1;
-    
+
     &.opened {
         z-index: 99;
         opacity: 1;
         .DishPopupContent {
             transform: translateX(0%);
         }
-    
+
     }
     .overlayModal {
         position: absolute;
@@ -36,9 +36,12 @@
         transition-duration: .3s;
         transition-timing-function: ease-in;
         transition-delay: .1ms;
-
-
         position: relative;
+
+        @media (max-width: 600px) {
+          overflow-y: auto;
+          width: 100%;
+        }
         .closeModal {
             position: absolute;
             left: 20px;
@@ -65,6 +68,10 @@
                 padding: 0 20px;
                 .notes {
                     display: flex;
+
+                    @media (max-width: 600px) {
+                      display: block;
+                    }
                 }
                 textarea {
                     display: inline-block;
@@ -82,7 +89,7 @@
                     }
                 }
             }
-            
+
             .DishPopupFooter {
                 input[type="submit"] {
                     background: #f06f25;
@@ -109,8 +116,8 @@
                     cursor: pointer;
                 }
             }
-            
-            
+
+
         }
     }
     .likeCont {
@@ -119,7 +126,7 @@
         }
 
     }
-    
+
     h3 {
         margin: 0;
         margin-bottom: 10px;
@@ -128,7 +135,7 @@
     .cartItemQuantity span {
         color: #fff;
     }
-    
+
     .cartItemQuantity button {
         /* width: 30px; */
         /* height: 30px; */
@@ -138,10 +145,10 @@
         /* margin-right: 5px; */
         color: #fff;
     }
-     
-    
+
+
    .DishPopupDetails {
-        
+
         display: flex;
         justify-content: space-between;
         border-top: 5px solid #fac50c;
@@ -176,7 +183,7 @@
             padding: 0 0 0 30px;
             display: flex;
             align-items: center;
-        
+
             img {
                 width: 100%;
                 // object-fit: cover;
@@ -208,7 +215,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        
+
              > p {
                 font-size: 17px;
                 font-weight: bold;

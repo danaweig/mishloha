@@ -12,11 +12,20 @@
         padding: 40px 0;
     }
     @media (max-width: 600px){
-        .pane{
+        .rightPane {
             display: none;
         }
         .MenuDishes {
             width: 100%;
+        }
+        .MenuSection .container>.flexRow {
+              display: block;
+        }
+        .leftPane {
+            width: 25%;
+            width: 100%;
+            padding: 0 5px;
+            margin-top: 40px;
         }
     }
 }
